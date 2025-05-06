@@ -1,5 +1,9 @@
 
 tests/
 .venv/
+codes/__pycache__/
+
+datasets/FashionMNIST/
+datasets/KuzushijiMNIST/
 datasets/CIFAR10/
 datasets/CIFAR100/

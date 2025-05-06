@@ -1,3 +1,11 @@
+'''
+Author: Jedidiah-Zhang yz25g21@soton.ac.uk
+Date: 2025-05-06 15:24:13
+LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
+LastEditTime: 2025-05-06 17:43:19
+FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
+Description: The codes to download, train and generate partial labels for datasets.
+'''
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -16,18 +24,19 @@ np.random.seed(seed)
 
 
 class LeNet5(nn.Module):
+    name = 'LeNet5'
     def __init__(self, num_classes):
         super(LeNet5, self).__init__()
         self.features = nn.Sequential(
-            nn.Conv2d(1, 6, kernel_size=5),
+            nn.Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2)),
             nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(6, 16, kernel_size=5),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
+            nn.Conv2d(6, 16, kernel_size=5, stride=1, padding=0),
             nn.ReLU(),
-            nn.MaxPool2d(2)
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0),
         )
         self.classifier = nn.Sequential(
-            nn.Linear(16*4*4, 120),
+            nn.Linear(16*5*5, 120),
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),
@@ -42,6 +51,7 @@ class LeNet5(nn.Module):
 
 
 class ResNet18(nn.Module):
+    name = 'ResNet18'
     def __init__(self, num_classes):
         super(ResNet18, self).__init__()
         self.resnet = torchvision.models.resnet18(weights=None)
@@ -52,6 +62,7 @@ class ResNet18(nn.Module):
 
 
 class ResNet56(nn.Module):
+    name = 'ResNet56'
     def __init__(self, num_classes):
         super(ResNet56, self).__init__()
         self.resnet = torchvision.models.resnet50(weights=None)
@@ -67,6 +78,7 @@ def load_dataset(dataset_name='CIFAR10'):
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
+    print(f"**** Loading {dataset_name} dataset ****")
     if dataset_name == 'CIFAR10':
         trainset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform)
         testset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform)
@@ -79,6 +91,8 @@ def load_dataset(dataset_name='CIFAR10'):
     elif dataset_name == 'KuzushijiMNIST':
         trainset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transforms.ToTensor())
         testset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transforms.ToTensor())
+    else:
+        raise ValueError(f"Dataset {dataset_name} not supported.")
     return trainset, testset
 
 
@@ -100,12 +114,13 @@ def generate_partial_labels(true_labels, topk_preds, avg_num_cl):
 def train_dataset_model(
     model, trainset, testset, 
     num_epochs=200, batch_size=128,
-    k=6, num_classes=10
+    lr=0.01, momentum=0.9, weight_decay=1e-3,
+    num_classes=10
 ):
     trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False)
     train_model = model(num_classes=num_classes).to(device)
-    optimizer = optim.SGD(train_model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-3)
+    optimizer = optim.SGD(train_model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
     loss_fn = nn.CrossEntropyLoss()
 
     for epoch in range(num_epochs):
@@ -150,24 +165,26 @@ def train_dataset_model(
                     \n\tTrain Loss: {train_loss:.6f}, Train Accuracy: {train_acc:.3f} \
                     \n\tTest Loss: {test_loss:.6f}, Test Accuracy: {test_acc:.3f}')
 
-    train_model.eval()
+    return train_model
+
+def get_topk_predictions(model, dataset, batch_size=128, k=6):
+    model.eval()
     with torch.no_grad():
         topk_preds = []
-        for inputs, labels in DataLoader(trainset, batch_size=batch_size):
-            outputs = train_model(inputs.to(device))
+        for inputs, _ in DataLoader(dataset, batch_size=batch_size):
+            outputs = model(inputs.to(device))
             _, topk = outputs.topk(k+1, dim=1)
             topk_preds.append(topk.cpu().numpy())
         topk_preds = np.concatenate(topk_preds, axis=0)
-
-    return topk_preds, train_model
-
+    return topk_preds
 
 if __name__ == "__main__":
     trainset, testset = load_dataset()
     true_labels = np.array(trainset.targets)
 
-    predictions, _ = train_dataset_model(ResNet18, trainset, testset)
+    model = train_dataset_model(ResNet18, trainset, testset)
+    predictions = get_topk_predictions(model, trainset)
     partial_labels = generate_partial_labels(true_labels, predictions, avg_num_cl=5)
 
-    with open('../datasets/pl_cifar10_avgcl5.pkl', 'wb') as f:
+    with open('../datasets/pl_CIFAR10_avgcl5.pkl', 'wb') as f:
         pickle.dump(partial_labels, f)
