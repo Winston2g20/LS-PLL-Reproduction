@@ -1,3 +1,11 @@
+'''
+Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
+Date: 2025-05-06 16:42:21
+LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
+LastEditTime: 2025-05-06 21:51:56
+FilePath: /LS-PLL-Reproduction/codes/main.py
+Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
+'''
 
 from pathlib import Path
 
@@ -13,22 +21,26 @@ EXPERIMENTS = [
     {
         'Dataset': 'FashionMNIST', 
         'Model': LeNet5, 
-        'AvgCL': [3, 4, 5]
+        'AvgCL': [3, 4, 5], 
+        'NumClasses': 10
     },
     {
         'Dataset': 'KuzushijiMNIST', 
         'Model': LeNet5, 
-        'AvgCL': [3, 4, 5]
+        'AvgCL': [3, 4, 5],
+        'NumClasses': 10
     },
     {
         'Dataset': 'CIFAR10', 
         'Model': ResNet18, 
-        'AvgCL': [3, 4, 5]
+        'AvgCL': [3, 4, 5],
+        'NumClasses': 10
     },
     {
         'Dataset': 'CIFAR100', 
         'Model': ResNet56, 
-        'AvgCL': [7, 9, 11]
+        'AvgCL': [7, 9, 11],
+        'NumClasses': 100
     }
 ]
 
@@ -45,7 +57,8 @@ def main():
                 pass
             else:
                 print(f"**** Training model for {exp['Dataset']} with {exp['Model'].name} ****")
-                model = train_dataset_model(exp['Model'], trainset, testset)
+                model = train_dataset_model(exp['Model'], trainset, testset,
+                                            num_classes=exp['NumClasses'])
                 torch.save(model, model_path)
                 print(f"**** Model saved to {model_path} ****")
 
