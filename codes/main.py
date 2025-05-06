@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-06 21:51:56
+LastEditTime: 2025-05-07 00:09:31
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -10,6 +10,9 @@ Description: Main script containing the complete pipeline for training and evalu
 from pathlib import Path
 
 from prepare_data import *
+from LeNet5 import LeNet5
+from ResNet18 import ResNet18
+from ResNet56 import ResNet56
 
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
