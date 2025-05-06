@@ -1,2 +1,5 @@
 
 tests/
+.venv/
+datasets/CIFAR10/
+datasets/CIFAR100/
