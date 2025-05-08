@@ -2,12 +2,13 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-08 21:27:38
+LastEditTime: 2025-05-08 22:58:01
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
 
 from pathlib import Path
+import os
 
 from prepare_data import *
 from LeNet5 import LeNet5
@@ -56,13 +57,10 @@ def main():
     for exp in EXPERIMENTS:
         print()
         trainset, testset = load_dataset(exp['Dataset'])
-        if type(trainset.targets) == list:
-            true_labels_train = np.array(trainset.targets)
-            true_labels_test = np.array(testset.targets)
-        else: 
-            true_labels_train = trainset.targets.numpy()
-            true_labels_test = testset.targets.numpy()
+        true_labels_train = trainset.targets.numpy()
+        true_labels_test = testset.targets.numpy()
 
+        if not os.path.exists('../models'): os.makedirs('../models')
         for avgCL in exp['AvgCL']:
             # Generate and load datasets
             model_path = f'../models/{exp['Dataset']}_{exp['Model'].name}.pth'
@@ -77,6 +75,7 @@ def main():
                 model.load_state_dict(torch.load(model_path))
                 model.eval()
 
+            if not os.path.exists('../datasets'): os.makedirs('../datasets')
             traindata_path = f'../datasets/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy'
             if not Path(traindata_path).exists():
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
