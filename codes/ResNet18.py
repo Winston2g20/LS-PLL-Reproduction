@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-07 00:05:12
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-07 00:07:44
+LastEditTime: 2025-05-07 00:11:48
 FilePath: /LS-PLL-Reproduction/codes/ResNet18.py
 Description: ResNet18 model implementation.
 '''
@@ -14,7 +14,9 @@ class ResNet18(nn.Module):
     name = 'ResNet18'
     def __init__(self, num_classes):
         super(ResNet18, self).__init__()
+        # Load the ResNet18 model directly from torchvision without pre-trained weights
         self.resnet = resnet18(weights=None)
+        # Modify the classifier to match the number of classes
         self.resnet.fc = nn.Linear(512, num_classes)
     
     def forward(self, x):

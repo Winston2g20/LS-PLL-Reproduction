@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-07 00:07:30
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-07 00:08:45
+LastEditTime: 2025-05-08 18:53:58
 FilePath: /LS-PLL-Reproduction/codes/ResNet56.py
 Description: ResNet56 model implementation.
 '''
@@ -45,18 +45,19 @@ class ResNet56(nn.Module):
     def __init__(self, num_classes):
         super(ResNet56, self).__init__()
         
-        self.in_channels = 16
-        self.conv1 = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(16)
+        self.in_channels = 64
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=1, padding=3, bias=False)
+        self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU()
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-        
-        self.layer1 = self._make_layer(Bottleneck, 16, 9, stride=1)
-        self.layer2 = self._make_layer(Bottleneck, 32, 9, stride=2)
-        self.layer3 = self._make_layer(Bottleneck, 64, 9, stride=2)
+
+        self.layer1 = self._make_layer(Bottleneck, 64, 3, stride=1)
+        self.layer2 = self._make_layer(Bottleneck, 128, 4, stride=2)
+        self.layer3 = self._make_layer(Bottleneck, 256, 9, stride=2)
+        self.layer4 = self._make_layer(Bottleneck, 512, 3, stride=2)
         
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.fc = nn.Linear(64 * Bottleneck.expansion, num_classes)
+        self.fc = nn.Linear(512 * Bottleneck.expansion, num_classes)
 
     def _make_layer(self, block, out_channels, num_blocks, stride):
         downsample = None
@@ -81,7 +82,9 @@ class ResNet56(nn.Module):
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
+        x = self.layer4(x)
 
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
         return self.fc(x)
+
