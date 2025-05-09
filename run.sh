@@ -8,4 +8,4 @@ if [ ! -d ".venv" ]; then
     ./.venv/bin/pip install -r requirements.txt
 fi
 
-./.venv/bin/python ./codes/main.py
+./.venv/bin/python ./codes/main.py --model_path ./models --dataset_path ./datasets

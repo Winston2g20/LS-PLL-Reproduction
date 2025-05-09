@@ -2,12 +2,13 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 17:46:51
+LastEditTime: 2025-05-09 18:13:32
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
 
 from pathlib import Path
+import argparse
 import os
 
 from prepare_data import *
@@ -15,9 +16,15 @@ from LeNet5 import LeNet5
 from ResNet18 import ResNet18
 from ResNet56 import ResNet56
 from train import LS_PLL_CrossEntropy, PartialLabelDataset, train_model
+from utils import validate_path
 
-MODEL_PATH = './models'
-DATASET_PATH = './datasets'
+# MODEL_PATH = './models'
+# DATASET_PATH = './datasets'
+parser = argparse.ArgumentParser(description='Full experiments')
+parser.add_argument('--model_path', type=validate_path, default='./models', help="Path to the models folder")
+parser.add_argument('--dataset_path', type=validate_path, default='./datasets', help="Path to the datasets folder")
+args = parser.parse_args()
+MODEL_PATH, DATASET_PATH = args.model_path, args.dataset_path
 
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
