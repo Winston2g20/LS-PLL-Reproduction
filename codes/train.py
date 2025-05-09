@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 23:17:44
+LastEditTime: 2025-05-09 23:20:10
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -25,20 +25,20 @@ class LS_PLL_CrossEntropy(nn.Module):
         super(LS_PLL_CrossEntropy, self).__init__()
         self.smoothing_rate = smoothing_rate
 
-    def forward(self, outputs, candidates, ground_truth):
+    def forward(self, logits, candidates, true_label_idx):
         """
         Partial Label Learning with Smoothing Cross Entropy
         params:
-            outputs (Tensor): model's output logits [batch_size, num_classes]
+            logits (Tensor): model's output logits [batch_size, num_classes]
             candidates (Tensor): multi-hot encoded labels [batch_size, num_classes]
-            ground_truth (Tensor): The pseudo-true label selected for each sample in the current iteration
+            true_label_idx (Tensor): The pseudo-true label selected for each sample in the current iteration
 
         return:
             loss (Tensor): cross-entropy loss after smoothing
         """
 
         # one_hot[j] = 1 iff j = y_i^(t)
-        one_hot = torch.zeros_like(candidates).scatter_(1, ground_truth.unsqueeze(1), 1.0)
+        one_hot = torch.zeros_like(candidates).scatter_(1, true_label_idx.unsqueeze(1), 1.0)
 
         # calculate size of candidates of each sample
         set_size = candidates.sum(dim=1, keepdim=True).clamp(min=1).float()
@@ -49,9 +49,8 @@ class LS_PLL_CrossEntropy(nn.Module):
         Y_ls = (1 - self.smoothing_rate) * one_hot + (self.smoothing_rate / set_size) * candidates
 
         # calc cross entropy loss
-        log_probs = F.log_softmax(outputs, dim=1)
+        log_probs = F.log_softmax(logits, dim=1)
         loss = -(Y_ls * log_probs).sum(dim=1).mean()
-
         return loss
 
 
@@ -123,6 +122,7 @@ def train_model(
                 true_label_idx = normalized.argmax(dim=1)                   # [B]
                 loss = criterion(outputs, labels, true_label_idx)
             else: loss = criterion(outputs, labels)
+
             loss.backward()
             optimizer.step()
 
