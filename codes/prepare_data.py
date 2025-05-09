@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 00:31:06
+LastEditTime: 2025-05-09 01:18:12
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
@@ -135,7 +135,7 @@ def generate_partial_labels(true_labels, topk_preds, avg_cl, k=6, num_classes=10
     n = len(true_labels)
     cl_values = np.random.randint(0, k, size=n)
     current_sum = cl_values.sum()
-    target_sum = avg_cl * n
+    target_sum = (avg_cl-1) * n
 
     while abs(current_sum - target_sum) > 0.01 * n:
         idx = np.random.randint(0, n)
