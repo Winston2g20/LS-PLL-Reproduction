@@ -9,3 +9,4 @@ codes/__pycache__/
 
 datasets/
 models/
+logs/
