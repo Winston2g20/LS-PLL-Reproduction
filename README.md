@@ -94,25 +94,17 @@ This will:
 
 The hyperparameters and experiments are defined in `codes/main.py`:
 
-**BATCH_SIZE** : 128
-
-**LEARNING_RATE** : 0.01
-
-**EPOCHS** : 200
-
-**WEIGHT_DECAY** : 1e-3
-
-**MOMENTUM** : 0.9
-
-**SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
-
-**EXPERIMENTS** :
-
-* FashionMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
-* KuzushijiMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
-
-* CIFAR-10, ResNet18, AvgCL ∈ {3,4,5}, TopK=6
-* CIFAR-100, ResNet56, AvgCL ∈ {7,9,11}, TopK=20
+* **BATCH_SIZE** : 128
+* **LEARNING_RATE** : 0.01
+* **EPOCHS** : 200
+* **WEIGHTING_PARAM** : 0.9
+* **MOMENTUM** : 0.9
+* **SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
+* **EXPERIMENTS** :
+  * FashionMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
+  * KuzushijiMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
+  * CIFAR-10, ResNet18, Avg.#CL ∈ {3,4,5}, TopK=6
+  * CIFAR-100, ResNet56, Avg.#CL ∈ {7,9,11}, TopK=20
 
 ## Requirements
 

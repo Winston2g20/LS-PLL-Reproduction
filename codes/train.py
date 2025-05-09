@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 23:20:10
+LastEditTime: 2025-05-09 23:58:18
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -21,21 +21,37 @@ torch.manual_seed(seed)
 
 
 class LS_PLL_CrossEntropy(nn.Module):
-    def __init__(self, smoothing_rate=0.1):
+    def __init__(self, smoothing_rate=0.1, ema_decay=0.9):
         super(LS_PLL_CrossEntropy, self).__init__()
         self.smoothing_rate = smoothing_rate
+        self.eta = ema_decay
+        self.register_buffer('ema_probs', torch.tensor([]))
 
-    def forward(self, logits, candidates, true_label_idx):
+    def forward(self, logits, candidates):
         """
         Partial Label Learning with Smoothing Cross Entropy
         params:
             logits (Tensor): model's output logits [batch_size, num_classes]
             candidates (Tensor): multi-hot encoded labels [batch_size, num_classes]
-            true_label_idx (Tensor): The pseudo-true label selected for each sample in the current iteration
-
         return:
             loss (Tensor): cross-entropy loss after smoothing
         """
+        # initialise EMA buffer
+        batch_size, num_classes = logits.size()
+        if self.ema_probs.numel() != batch_size * num_classes:
+            self.ema_probs = torch.zeros_like(logits)
+
+        # calc softmax and discard non candidates
+        probs = F.softmax(logits, dim=1) * candidates
+
+        # update EMA (η)
+        # q^(t) = η q^(t-1) + (1-η) q
+        self.ema_probs = self.eta * self.ema_probs + (1 - self.eta) * probs
+
+        # normalise candidate set and estimate pseudo-true label
+        denom = (self.ema_probs * candidates).sum(dim=1, keepdim=True).clamp(min=1e-12)
+        normalized = (self.ema_probs * candidates) / denom
+        true_label_idx = normalized.argmax(dim=1)
 
         # one_hot[j] = 1 iff j = y_i^(t)
         one_hot = torch.zeros_like(candidates).scatter_(1, true_label_idx.unsqueeze(1), 1.0)
@@ -87,14 +103,14 @@ class PartialLabelDataset(torch.utils.data.Dataset):
 def train_model(
     Model, trainset, testset, 
     num_epochs=200, batch_size=128,
-    lr=0.01, momentum=0.9, weight_decay=1e-3,
+    lr=0.01, momentum=0.9, 
     num_classes=10, criterion=nn.CrossEntropyLoss(),
     label_format='auto'
 ):
     trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False)
     model = Model(num_classes=num_classes).to(device)
-    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
+    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     test_criterion = nn.CrossEntropyLoss()
     records = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
 
@@ -113,16 +129,7 @@ def train_model(
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(inputs)
-
-            # estimate true label
-            if label_format == 'multihot' and isinstance(criterion, LS_PLL_CrossEntropy):
-                probs = F.softmax(outputs, dim=1) * labels                  # [B, num_classes]
-                denom = probs.sum(dim=1, keepdim=True).clamp(min=1e-12)
-                normalized = probs / denom                                  # [B, num_classes]
-                true_label_idx = normalized.argmax(dim=1)                   # [B]
-                loss = criterion(outputs, labels, true_label_idx)
-            else: loss = criterion(outputs, labels)
-
+            loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
 

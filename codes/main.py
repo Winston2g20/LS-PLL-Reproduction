@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 18:13:32
+LastEditTime: 2025-05-09 23:57:09
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -29,7 +29,7 @@ MODEL_PATH, DATASET_PATH = args.model_path, args.dataset_path
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
 EPOCHS = 200
-WEIGHT_DECAY = 1e-3
+WEIGHTING_PARAM = 0.9
 MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
@@ -121,7 +121,7 @@ def main():
             print(f"**** Training on partial labelled {exp['Dataset']} without label smoothing ****")
             _, non_smoothing_record = train_model(exp['Model'], trainset, testset, 
                                                 num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
-                                                lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY, 
+                                                lr=LEARNING_RATE, momentum=MOMENTUM,
                                                 num_classes=exp['NumClasses'], label_format='multihot')
 
             # train model with label smoothing across different smoothing rates
@@ -131,8 +131,8 @@ def main():
                 _, record = train_model(exp['Model'], trainset, testset, 
                             num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
                             lr=LEARNING_RATE, momentum=MOMENTUM, 
-                            weight_decay=WEIGHT_DECAY, num_classes=exp['NumClasses'],
-                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r).to(device), 
+                            num_classes=exp['NumClasses'],
+                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r, ema_decay=WEIGHTING_PARAM).to(device), 
                             label_format='multihot')
                 smoothing_records[r] = record
 
