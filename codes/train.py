@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 17:58:09
+LastEditTime: 2025-05-09 23:17:44
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -25,35 +25,32 @@ class LS_PLL_CrossEntropy(nn.Module):
         super(LS_PLL_CrossEntropy, self).__init__()
         self.smoothing_rate = smoothing_rate
 
-    def forward(self, outputs, target):
+    def forward(self, outputs, candidates, ground_truth):
         """
         Partial Label Learning with Smoothing Cross Entropy
         params:
             outputs (Tensor): model's output logits [batch_size, num_classes]
-            targets (Tensor): multi-hot encoded labels [batch_size, num_classes]
+            candidates (Tensor): multi-hot encoded labels [batch_size, num_classes]
+            ground_truth (Tensor): The pseudo-true label selected for each sample in the current iteration
 
         return:
             loss (Tensor): cross-entropy loss after smoothing
         """
-        batch_size, num_classes = outputs.shape
 
-        # count the number of candidate labels of each samples
-        m = target.sum(dim=1, keepdim=True).clamp(min=1)
+        # one_hot[j] = 1 iff j = y_i^(t)
+        one_hot = torch.zeros_like(candidates).scatter_(1, ground_truth.unsqueeze(1), 1.0)
 
-        # prob distribution of the candidates: (1-r)/m
-        prob_candidate = (1. - self.smoothing_rate) / m
+        # calculate size of candidates of each sample
+        set_size = candidates.sum(dim=1, keepdim=True).clamp(min=1).float()
 
-        # prob distribution of other classes r/(num_classes-m)
-        denominator = num_classes - m
-        prob_non_candidate = torch.where(
-            denominator > 0,
-            self.smoothing_rate / denominator, 
-            torch.tensor(0., device=device)
-        )
+        # label smoothing
+        # within candidate set: Y_ls_j = (1-r) * I[j=y] + (r / |Y|)
+        # outside candidate set: Y_ls_j = 0
+        Y_ls = (1 - self.smoothing_rate) * one_hot + (self.smoothing_rate / set_size) * candidates
 
-        smoothed_target = target * prob_candidate + (1 - target) * prob_non_candidate
+        # calc cross entropy loss
         log_probs = F.log_softmax(outputs, dim=1)
-        loss = -(smoothed_target * log_probs).sum(dim=1).mean()
+        loss = -(Y_ls * log_probs).sum(dim=1).mean()
 
         return loss
 
@@ -117,12 +114,20 @@ def train_model(
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(inputs)
-            loss = criterion(outputs, labels)
+
+            # estimate true label
+            if label_format == 'multihot' and isinstance(criterion, LS_PLL_CrossEntropy):
+                probs = F.softmax(outputs, dim=1) * labels                  # [B, num_classes]
+                denom = probs.sum(dim=1, keepdim=True).clamp(min=1e-12)
+                normalized = probs / denom                                  # [B, num_classes]
+                true_label_idx = normalized.argmax(dim=1)                   # [B]
+                loss = criterion(outputs, labels, true_label_idx)
+            else: loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
 
             running_loss += loss.item()
-            predictions = torch.argmax(outputs, dim=1)
+            predictions = outputs.argmax(dim=1)
             if label_format == 'multihot':
                 batch_indices = torch.arange(predictions.size(0), device=device)
                 correct += labels[batch_indices, predictions].sum().item()
