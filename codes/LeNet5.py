@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-07 00:03:25
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-07 19:09:00
+LastEditTime: 2025-05-09 16:11:58
 FilePath: /LS-PLL-Reproduction/codes/LeNet5.py
 Description: LeNet5 model implementation.
 '''

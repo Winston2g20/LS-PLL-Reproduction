@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 12:04:15
+LastEditTime: 2025-05-09 17:46:51
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -14,9 +14,10 @@ from prepare_data import *
 from LeNet5 import LeNet5
 from ResNet18 import ResNet18
 from ResNet56 import ResNet56
+from train import LS_PLL_CrossEntropy, PartialLabelDataset, train_model
 
-MODEL_PATH = '../models'
-DATASET_PATH = '../datasets'
+MODEL_PATH = './models'
+DATASET_PATH = './datasets'
 
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
@@ -57,8 +58,9 @@ EXPERIMENTS = [
 
 
 def main():
-    for exp in EXPERIMENTS:
+    for exp in EXPERIMENTS: # for each models and relative datasets
         print()
+        # load dataset
         trainset, testset = load_dataset(exp['Dataset'])
         if type(trainset.targets) == torch.Tensor:
             true_labels_train = trainset.targets.numpy()
@@ -68,8 +70,8 @@ def main():
             true_labels_test = np.array(testset.targets)
 
         if not os.path.exists(MODEL_PATH): os.makedirs(MODEL_PATH)
-        for avgCL in exp['AvgCL']:
-            # Generate and load datasets
+        for avgCL in exp['AvgCL']: # for each noise levels
+            # train model if model file not exist, or load model if exists
             model_path = f'{MODEL_PATH}/{exp['Dataset']}_{exp['Model'].name}.pth'
             if Path(model_path).exists():
                 model = exp['Model'](num_classes=exp['NumClasses']).to(device)
@@ -82,6 +84,7 @@ def main():
                 torch.save(model.state_dict(), model_path)
                 print(f"**** Model saved to {model_path} ****")
 
+            # load, or generate and load partial datasets for both train and test sets
             if not os.path.exists(DATASET_PATH): os.makedirs(DATASET_PATH)
             traindata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy'
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
@@ -104,7 +107,27 @@ def main():
                 np.save(testdata_path, partial_labels_test)
                 print(f"**** Partial labels saved to {testdata_path} ****")
 
-            # Train model with partial labels
+            # Train model with partial labels without label smoothing
+            # using nn.CrossEntropy as default.
+            trainset = PartialLabelDataset(trainset, partial_labels_train, transform=transforms.ToTensor())
+            testset = PartialLabelDataset(testset, partial_labels_test, transform=transforms.ToTensor())
+            print(f"**** Training on partial labelled {exp['Dataset']} without label smoothing ****")
+            _, non_smoothing_record = train_model(exp['Model'], trainset, testset, 
+                                                num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
+                                                lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY, 
+                                                num_classes=exp['NumClasses'], label_format='multihot')
+
+            # train model with label smoothing across different smoothing rates
+            smoothing_records = {}
+            for r in SMOOTHING_RATE:
+                print(f"\n**** Training on partial labelled {exp['Dataset']} with a smoothing rate of {r} ****")
+                _, record = train_model(exp['Model'], trainset, testset, 
+                            num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
+                            lr=LEARNING_RATE, momentum=MOMENTUM, 
+                            weight_decay=WEIGHT_DECAY, num_classes=exp['NumClasses'],
+                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r).to(device), 
+                            label_format='multihot')
+                smoothing_records[r] = record
 
 if __name__ == "__main__":
     main()
