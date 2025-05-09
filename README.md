@@ -23,7 +23,7 @@ Partial Label Learning (PLL) addresses the problem where each training example i
 
 ## Repository Structure
 
-```
+```bash
 LS-PLL-Reproduction/
 ├── codes/                   # Source code
 │   ├── LeNet5.py            # LeNet5 model implementation
@@ -40,14 +40,38 @@ LS-PLL-Reproduction/
 └── README.md                # This file
 ```
 
+## Experimental Configuration
+
+The hyperparameters and experiments are defined in `codes/main.py`:
+
+* **BATCH_SIZE** : 128
+* **LEARNING_RATE** : 0.01
+* **EPOCHS** : 200
+* **WEIGHTING_PARAM** : 0.9
+* **MOMENTUM** : 0.9
+* **SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
+* **EXPERIMENTS** :
+  * FashionMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
+  * KuzushijiMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
+  * CIFAR-10, ResNet18, Avg.#CL ∈ {3,4,5}, TopK=6
+  * CIFAR-100, ResNet56, Avg.#CL ∈ {7,9,11}, TopK=20
+
+## Requirements
+
+* Python 3.13+
+* numpy==2.2.5
+* torch==2.7.0
+* torchvision==0.22.0
+
 ## Installation
 
 1. **Clone the repository**
 
-   ```bash
-   git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
-   cd LS-PLL-Reproduction
-   ```
+    ```bash
+    git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
+    cd LS-PLL-Reproduction
+    ```
+
 2. **Create a virtual environment**
 
    ```bash
@@ -55,6 +79,7 @@ LS-PLL-Reproduction/
    ```
 
    The `run.sh` script will create a `.venv`, install dependencies, and run the experiments.
+
 3. **Alternatively, manually install dependencies**
 
    ```bash
@@ -89,26 +114,3 @@ This will:
 
 * `--model_path`: Path to save or load model weights (default: `./models`).
 * `--dataset_path`: Path for input datasets and generated partial labels (default: `./datasets`).
-
-## Experimental Configuration
-
-The hyperparameters and experiments are defined in `codes/main.py`:
-
-* **BATCH_SIZE** : 128
-* **LEARNING_RATE** : 0.01
-* **EPOCHS** : 200
-* **WEIGHTING_PARAM** : 0.9
-* **MOMENTUM** : 0.9
-* **SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
-* **EXPERIMENTS** :
-  * FashionMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
-  * KuzushijiMNIST, LeNet5, Avg.#CL ∈ {3,4,5}, TopK=6
-  * CIFAR-10, ResNet18, Avg.#CL ∈ {3,4,5}, TopK=6
-  * CIFAR-100, ResNet56, Avg.#CL ∈ {7,9,11}, TopK=20
-
-## Requirements
-
-* Python 3.13+
-* numpy==2.2.5
-* torch==2.7.0
-* torchvision==0.22.0
