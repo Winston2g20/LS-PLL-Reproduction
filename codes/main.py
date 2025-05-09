@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 00:57:30
+LastEditTime: 2025-05-09 12:04:15
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -95,7 +95,7 @@ def main():
                 print(f"**** Partial labels saved to {traindata_path} ****")
 
             testdata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy'
-            if Path(testdata_path).exists(): partial_labels_train = np.load(testdata_path)
+            if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
                 predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
                 partial_labels_test, _ = generate_partial_labels(true_labels_test, predictions_test, 
