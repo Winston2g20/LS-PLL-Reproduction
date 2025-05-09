@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-08 21:13:14
+LastEditTime: 2025-05-09 00:31:06
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
@@ -131,7 +131,7 @@ def get_topk_predictions(model, dataset, batch_size=128, k=6):
     return topk_preds
 
 
-def generate_partial_labels(true_labels, topk_preds, avg_cl, k=6):
+def generate_partial_labels(true_labels, topk_preds, avg_cl, k=6, num_classes=10):
     n = len(true_labels)
     cl_values = np.random.randint(0, k, size=n)
     current_sum = cl_values.sum()
@@ -148,13 +148,13 @@ def generate_partial_labels(true_labels, topk_preds, avg_cl, k=6):
             current_sum -= 1
     
     random_mask = np.argsort(np.random.rand(n, k), axis=1) < cl_values.reshape(-1, 1)
-    cl_labels = [topk_preds[i, mask] for i, mask in enumerate(random_mask)]
-    cl_labels = [np.append(arr, gt) for arr, gt in zip(true_labels, cl_labels)]
+    partial_labels = [topk_preds[i, mask] for i, mask in enumerate(random_mask)]
+    partial_labels = [np.append(arr, gt) for arr, gt in zip(true_labels, partial_labels)]
 
-    candidates = np.hstack([topk_preds, true_labels[:, None]])
-    selected_labels = np.where(random_mask, topk_preds, -np.inf)
-    partial_labels = (candidates[..., None] == selected_labels[:, None, :]).any(axis=-1).astype(np.bool)
-    return partial_labels
+    onehot_labels = np.zeros((n, num_classes), dtype=np.bool)
+    for i in range(n):
+        onehot_labels[i, partial_labels[i]] = 1
+    return onehot_labels, partial_labels
 
 
 if __name__ == "__main__":
