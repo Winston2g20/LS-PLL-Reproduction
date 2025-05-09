@@ -1,3 +1,112 @@
 # LS-PLL-Reproduction
 
-Reproduction of paper [Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)
+**This repository contains the code and resources to reproduce the experiments from the paper "[Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)"**
+
+## Overview
+
+Partial Label Learning (PLL) addresses the problem where each training example is associated with a set of candidate labels, only one of which is correct. This project investigates the effect of label smoothing on deep PLL methods by:
+
+* Training base models (LeNet5, ResNet18, ResNet56) on clean datasets.
+* Generating partial labels with controlled ambiguity.
+* Evaluating PLL performance with and without label smoothing.
+* Comparing accuracy across different smoothing rates and noise levels.
+
+## Features
+
+* **Model Architectures** : Implements LeNet5, ResNet18, and ResNet56.
+* **Datasets** : Support for FashionMNIST, KuzushijiMNIST, CIFAR-10, and CIFAR-100.
+* **Partial Label Generation** : Configurable average candidate label size (AvgCL) and Top-K predictions.
+* **Label Smoothing** : Custom `LS_PLL_CrossEntropy` loss for smoothing within candidate sets.
+* **Experiments Pipeline** : End-to-end script to train, generate partial labels, and evaluate.
+
+## Repository Structure
+
+```
+LS-PLL-Reproduction/
+├── codes/                   # Source code
+│   ├── LeNet5.py            # LeNet5 model implementation
+│   ├── ResNet18.py          # ResNet18 model implementation
+│   ├── ResNet56.py          # ResNet56 model implementation
+│   ├── prepare_data.py      # Dataset loading & partial label generation
+│   ├── train.py             # Training routines & PLL loss
+│   └── utils.py             # Utility functions
+├── datasets/                # Downloaded datasets & generated partial labels
+├── models/                  # Saved pretrained and fine-tuned model weights
+├── logs/                    # Training and evaluation logs
+├── run.sh                   # Quick start script (setup & run all experiments)
+├── requirements.txt         # Python package dependencies
+└── README.md                # This file
+```
+
+## Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
+   cd LS-PLL-Reproduction
+   ```
+2. **Create a virtual environment**
+
+   ```bash
+   bash run.sh
+   ```
+
+   The `run.sh` script will create a `.venv`, install dependencies, and run the experiments.
+3. **Alternatively, manually install dependencies**
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+### Running All Experiments
+
+```bash
+bash run.sh
+```
+
+This will:
+
+1. Download datasets to `datasets/`.
+2. Train base models on each dataset and save to `models/`.
+3. Generate partial labels with different AvgCL values and save to `datasets/`.
+4. Train PLL models without smoothing and with smoothing rates: 0.1, 0.3, 0.5, 0.7, 0.9.
+5. Log outputs to `logs/YYYYMMDD_HHMMSS.log`.
+
+### Custom Run
+
+```bash
+./.venv/bin/python -u ./codes/main.py \
+  --model_path ./models       \
+  --dataset_path ./datasets
+```
+
+* `--model_path`: Path to save or load model weights (default: `./models`).
+* `--dataset_path`: Path for input datasets and generated partial labels (default: `./datasets`).
+
+## Experimental Configuration
+
+The hyperparameters and experiments are defined in `codes/main.py`:
+
+* **BATCH_SIZE** : 128
+* **LEARNING_RATE** : 0.01
+* **EPOCHS** : 200
+* **WEIGHT_DECAY** : 1e-3
+* **MOMENTUM** : 0.9
+* **SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
+* **EXPERIMENTS** :
+* FashionMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
+* KuzushijiMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
+* CIFAR-10, ResNet18, AvgCL ∈ {3,4,5}, TopK=6
+* CIFAR-100, ResNet56, AvgCL ∈ {7,9,11}, TopK=20
+
+## Requirements
+
+* Python 3.13+
+* numpy==2.2.5
+* torch==2.7.0
+* torchvision==0.22.0
