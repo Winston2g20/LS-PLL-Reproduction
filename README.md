@@ -1,6 +1,8 @@
 # LS-PLL-Reproduction
 
-**This repository contains the code and resources to reproduce the experiments from the paper "[Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)"**
+**This repository contains the code and resources to reproduce the experiments from the paper:**
+
+**[Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)**
 
 ## Overview
 
@@ -92,15 +94,23 @@ This will:
 
 The hyperparameters and experiments are defined in `codes/main.py`:
 
-* **BATCH_SIZE** : 128
-* **LEARNING_RATE** : 0.01
-* **EPOCHS** : 200
-* **WEIGHT_DECAY** : 1e-3
-* **MOMENTUM** : 0.9
-* **SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
-* **EXPERIMENTS** :
+**BATCH_SIZE** : 128
+
+**LEARNING_RATE** : 0.01
+
+**EPOCHS** : 200
+
+**WEIGHT_DECAY** : 1e-3
+
+**MOMENTUM** : 0.9
+
+**SMOOTHING_RATE** : [0.1, 0.3, 0.5, 0.7, 0.9]
+
+**EXPERIMENTS** :
+
 * FashionMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
 * KuzushijiMNIST, LeNet5, AvgCL ∈ {3,4,5}, TopK=6
+
 * CIFAR-10, ResNet18, AvgCL ∈ {3,4,5}, TopK=6
 * CIFAR-100, ResNet56, AvgCL ∈ {7,9,11}, TopK=20
 
