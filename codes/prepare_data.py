@@ -2,13 +2,11 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 17:51:45
+LastEditTime: 2025-05-10 17:14:55
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
 import torch
-# import torch.nn as nn
-# import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
@@ -17,7 +15,10 @@ import numpy as np
 import pickle
 
 from ResNet18 import ResNet18
-from train import train_model, device
+from train import train_model
+from utils import device, seed
+
+np.random.seed(seed)
 
 
 def load_dataset(dataset_name='CIFAR10'):

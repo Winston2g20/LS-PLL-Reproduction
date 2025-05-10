@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 23:58:18
+LastEditTime: 2025-05-10 18:28:13
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -15,9 +15,7 @@ from torch.utils.data import DataLoader
 import torchvision.datasets as datasets
 from PIL import Image
 
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-seed = 42
-torch.manual_seed(seed)
+from utils import device
 
 
 class LS_PLL_CrossEntropy(nn.Module):
@@ -105,7 +103,7 @@ def train_model(
     num_epochs=200, batch_size=128,
     lr=0.01, momentum=0.9, 
     num_classes=10, criterion=nn.CrossEntropyLoss(),
-    label_format='auto'
+    label_format='indices'
 ):
     trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False)
@@ -113,13 +111,6 @@ def train_model(
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     test_criterion = nn.CrossEntropyLoss()
     records = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
-
-    if label_format == 'auto':
-        sample_label = trainset[0][1]
-        if isinstance(sample_label, (list, tuple)) or \
-            (isinstance(sample_label, torch.Tensor) and sample_label.dim() == 1):
-            label_format = 'indices'
-        else: label_format = 'multihot'
 
     for epoch in range(num_epochs):
         model.train()

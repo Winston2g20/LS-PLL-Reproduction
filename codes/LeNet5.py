@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-07 00:03:25
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 16:11:58
+LastEditTime: 2025-05-10 17:20:23
 FilePath: /LS-PLL-Reproduction/codes/LeNet5.py
 Description: LeNet5 model implementation.
 '''
@@ -26,10 +26,14 @@ class LeNet5(nn.Module):
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),
-            nn.Linear(84, num_classes)
         )
+        self.fc = nn.Linear(84, num_classes)
 
     def forward(self, x):
+        x = self.get_features(x)
+        return self.fc(x)
+    
+    def get_features(self, x):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)

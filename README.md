@@ -62,16 +62,20 @@ The hyperparameters and experiments are defined in `codes/main.py`:
 * numpy==2.2.5
 * torch==2.7.0
 * torchvision==0.22.0
+* scikit-learn==1.6.1
+* scipy==1.15.3
+* pandas==2.2.3
+* seaborn==0.13.2
+* matplotlib==3.10.1
 
 ## Installation
 
 1. **Clone the repository**
 
-    ```bash
-    git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
-    cd LS-PLL-Reproduction
-    ```
-
+   ```bash
+   git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
+   cd LS-PLL-Reproduction
+   ```
 2. **Create a virtual environment**
 
    ```bash
@@ -79,7 +83,6 @@ The hyperparameters and experiments are defined in `codes/main.py`:
    ```
 
    The `run.sh` script will create a `.venv`, install dependencies, and run the experiments.
-
 3. **Alternatively, manually install dependencies**
 
    ```bash
@@ -103,14 +106,17 @@ This will:
 3. Generate partial labels with different AvgCL values and save to `datasets/`.
 4. Train PLL models without smoothing and with smoothing rates: 0.1, 0.3, 0.5, 0.7, 0.9.
 5. Log outputs to `logs/YYYYMMDD_HHMMSS.log`.
+6. Figures outputs to `./doc/figures.`
 
 ### Custom Run
 
 ```bash
-./.venv/bin/python -u ./codes/main.py \
-  --model_path ./models       \
-  --dataset_path ./datasets
+./.venv/bin/python -u ./codes/main.py 	\
+  --model_path ./models       		\
+  --dataset_path ./datasets		\
+  --figure_path ./doc/figures
 ```
 
 * `--model_path`: Path to save or load model weights (default: `./models`).
 * `--dataset_path`: Path for input datasets and generated partial labels (default: `./datasets`).
+* `--figure_path`: Path to save TSNE plots generated (default: `./doc/figures`).

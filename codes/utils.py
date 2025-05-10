@@ -2,19 +2,64 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 18:08:41
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-09 18:09:03
+LastEditTime: 2025-05-10 17:52:57
 FilePath: /LS-PLL-Reproduction/codes/utils.py
-Description: Utils used not related to the project
+Description: Utils used not related to the experiments
 '''
-import os
+import torch
+from torch.utils.data import DataLoader
+from sklearn.manifold import TSNE
+import seaborn as sns
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import argparse
+import os
+
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+seed = 42
+torch.manual_seed(seed)
+
 
 def validate_path(path):
     if not os.path.exists(path):
-        raise argparse.ArgumentTypeError(f"路径 '{path}' 不存在")
+        os.makedirs(path)
     return path
 
-def validate_directory(path):
-    if not os.path.isdir(path):
-        raise argparse.ArgumentTypeError(f"'{path}' 不是有效文件夹")
-    return path
+
+def extract_features(model, dataset, batch_size=128):
+    model.eval()
+    features, labels = [], []
+
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    with torch.no_grad():
+        for x, y in dataloader:
+            x = x.to(device)
+            out = model.get_features(x)  
+            features.append(out.cpu())
+            labels.append(y.argmax(dim=1) if y.ndim > 1 else y) 
+    return torch.cat(features).numpy(), torch.cat(labels).numpy()
+
+
+def tsne_plot(features, labels, title, save_path):
+    tsne = TSNE(n_components=2, perplexity=30, n_iter=3000, random_state=42)
+    reduced = tsne.fit_transform(features)
+    plt.figure(figsize=(4, 4))
+    sns.scatterplot(x=reduced[:,0], y=reduced[:,1], hue=labels, palette='tab10', s=10, linewidth=0)
+    plt.title(title, fontsize=10)
+    plt.xticks([]); plt.yticks([]); plt.legend([],[], frameon=False)
+    plt.tight_layout()
+    plt.savefig(save_path, dpi=300)
+    plt.close()
+
+
+def plot_grid(image_paths, titles, rows, cols, save_path):
+    fig, axes = plt.subplots(rows, cols, figsize=(2.5 * cols, 2.5 * rows))
+    for i, ax in enumerate(axes.flatten()):
+        img = mpimg.imread(image_paths[i])
+        ax.imshow(img)
+        ax.axis('off')
+        ax.set_title(titles[i], fontsize=9)
+    plt.tight_layout()
+    plt.savefig(save_path, dpi=300)
+    plt.close()

@@ -11,4 +11,4 @@ fi
 LOG_FILE="logs/$(date +"%Y%m%d_%H%M%S").log"
 mkdir -p logs
 
-./.venv/bin/python -u ./codes/main.py --model_path ./models --dataset_path ./datasets 2>&1 | tee "$LOG_FILE"
+./.venv/bin/python -u ./codes/main.py --model_path ./models --dataset_path ./datasets --figure_path ./doc/figures 2>&1 | tee "$LOG_FILE"

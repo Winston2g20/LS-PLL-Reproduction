@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-07 00:07:30
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-08 18:53:58
+LastEditTime: 2025-05-10 17:23:31
 FilePath: /LS-PLL-Reproduction/codes/ResNet56.py
 Description: ResNet56 model implementation.
 '''
@@ -75,6 +75,10 @@ class ResNet56(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        x = self.get_features(x)
+        return self.fc(x)
+    
+    def get_features(self, x):
         x = self.conv1(x)
         x = self.relu(self.bn1(x))
         x = self.maxpool(x)
@@ -85,6 +89,5 @@ class ResNet56(nn.Module):
         x = self.layer4(x)
 
         x = self.avgpool(x)
-        x = x.view(x.size(0), -1)
-        return self.fc(x)
+        return x.view(x.size(0), -1)
 
