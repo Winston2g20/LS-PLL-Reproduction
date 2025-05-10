@@ -2,7 +2,7 @@
 
 **This repository contains the code and resources to reproduce the experiments from the paper:**
 
-**[Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)**
+**[Does Label Smoothing Help Deep Partial Label Learning?](https://openreview.net/pdf?id=drjjxmi2Ha)** by Gong et al.
 
 ## Overview
 
@@ -79,12 +79,9 @@ The hyperparameters and experiments are defined in `codes/main.py`:
 
 2. **Create a virtual environment**
 
-   ```bash
-   bash run.sh
-   ```
-
    The `run.sh` script will create a `.venv`, install dependencies, and run the experiments.
-3. **Alternatively, manually install dependencies**
+
+   Alternatively, manually install dependencies
 
    ```bash
    python3 -m venv .venv
