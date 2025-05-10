@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 21:24:40
+LastEditTime: 2025-05-10 21:56:35
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -65,10 +65,9 @@ EXPERIMENTS = [
 
 def main():
     for exp in EXPERIMENTS: # for each models and relative datasets
-        models = {}
-        records = {}
-        figure_paths = []
-        titles = []
+        models, records = {}, {}
+        figure_paths, titles = [], []
+        print()
 
         # load dataset
         trainset, testset = load_dataset(exp['Dataset'], dataset_path=DATASET_PATH)
@@ -79,10 +78,8 @@ def main():
             true_labels_train = np.array(trainset.targets)
             true_labels_test = np.array(testset.targets)
 
-        print()
         for avgCL in exp['AvgCL']: # for each noise levels
-            models[avgCL] = []
-            records[avgCL] = []
+            models[avgCL], records[avgCL] = [], []
 
             # train model for generating datasets if model file not exist, or load model if exists
             dataset_model_path = f"{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth"
@@ -123,10 +120,10 @@ def main():
             # using nn.CrossEntropy() as default.
             model_path = MODEL_PATH + f"/{exp['Model'].name}/avgcl{avgCL}"
             if not os.path.exists(model_path): os.makedirs(model_path)
-            trainset = PartialLabelDataset(trainset, partial_labels_train, transform=transforms.ToTensor())
-            testset = PartialLabelDataset(testset, partial_labels_test, transform=transforms.ToTensor())
+            train_set = PartialLabelDataset(trainset, partial_labels_train, transform=transforms.ToTensor())
+            test_set = PartialLabelDataset(testset, partial_labels_test, transform=transforms.ToTensor())
             print(f"**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and no label smoothing ****")
-            non_smoothing_model, non_smoothing_record = train_model(exp['Model'], trainset, testset, 
+            non_smoothing_model, non_smoothing_record = train_model(exp['Model'], train_set, test_set, 
                                                                     num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
                                                                     lr=LEARNING_RATE, momentum=MOMENTUM,
                                                                     num_classes=exp['NumClasses'], label_format='multihot')
@@ -145,7 +142,7 @@ def main():
             # train models with label smoothing across different noise levels
             for r in SMOOTHING_RATE:
                 print(f"\n**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and a smoothing rate of {r} ****")
-                model, record = train_model(exp['Model'], trainset, testset, 
+                model, record = train_model(exp['Model'], train_set, test_set, 
                             num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
                             lr=LEARNING_RATE, momentum=MOMENTUM, 
                             num_classes=exp['NumClasses'],
@@ -164,7 +161,7 @@ def main():
                 print(f"**** TSNE plot saved to {figure_path} ****")
 
             # save records into the models folder
-            with open(model_path+'/records.pkl') as f:
+            with open(model_path+'/records.pkl', 'wb') as f:
                 pickle.dump(records, f)
 
         # plot grid
