@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 18:57:20
+LastEditTime: 2025-05-10 21:10:21
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -109,7 +109,6 @@ def train_model(
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False)
     model = Model(num_classes=num_classes).to(device)
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
-    test_criterion = nn.CrossEntropyLoss()
     record = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
 
     for epoch in range(num_epochs):
@@ -142,7 +141,7 @@ def train_model(
             for inputs, labels in testloader:
                 inputs, labels = inputs.to(device), labels.to(device)
                 outputs = model(inputs)
-                loss = test_criterion(outputs, labels)
+                loss = criterion(outputs, labels)
 
                 running_test_loss += loss.item()
                 predictions = torch.argmax(outputs, dim=1)

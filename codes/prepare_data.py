@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 17:14:55
+LastEditTime: 2025-05-10 21:20:51
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
@@ -21,7 +21,7 @@ from utils import device, seed
 np.random.seed(seed)
 
 
-def load_dataset(dataset_name='CIFAR10'):
+def load_dataset(dataset_name='CIFAR10', dataset_path='../datasets'):
     transform_train = transforms.Compose([
         transforms.RandomHorizontalFlip(),
         transforms.RandomRotation(10),
@@ -34,17 +34,17 @@ def load_dataset(dataset_name='CIFAR10'):
     ])
     print(f"**** Loading {dataset_name} dataset ****")
     if dataset_name == 'CIFAR10':
-        trainset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.CIFAR10(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.CIFAR10(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'CIFAR100':
-        trainset = datasets.CIFAR100(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.CIFAR100(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.CIFAR100(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.CIFAR100(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'FashionMNIST':
-        trainset = datasets.FashionMNIST(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.FashionMNIST(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.FashionMNIST(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.FashionMNIST(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'KuzushijiMNIST':
-        trainset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.KMNIST(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.KMNIST(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     else:
         raise ValueError(f"Dataset {dataset_name} not supported.")
     return trainset, testset

@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 21:03:38
+LastEditTime: 2025-05-10 21:24:40
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -71,7 +71,7 @@ def main():
         titles = []
 
         # load dataset
-        trainset, testset = load_dataset(exp['Dataset'])
+        trainset, testset = load_dataset(exp['Dataset'], dataset_path=DATASET_PATH)
         if type(trainset.targets) == torch.Tensor:
             true_labels_train = trainset.targets.numpy()
             true_labels_test = testset.targets.numpy()
@@ -136,7 +136,7 @@ def main():
             print(f"**** Model saved to {model_path}/r_noLS.npy ****")
 
             # generate and save plots
-            figure_path = FIGURE_PATH + f"/tsne_{exp['Model'].name}_cl{avgCL}_r_noLS.png"
+            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
             figure_paths.append(figure_path)
             features, labels = extract_features(non_smoothing_model, testset, batch_size=BATCH_SIZE)
             tsne_plot(features, labels, "w/o LS", figure_path)
@@ -157,7 +157,7 @@ def main():
                 print(f"**** Model saved to {model_path}/r_{r}.npy ****")
 
                 # generate and save plots
-                figure_path = FIGURE_PATH + f"/tsne_{exp['Model'].name}_cl{avgCL}_r_{r}.png"
+                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
                 figure_paths.append(figure_path)
                 features, labels = extract_features(model, testset, batch_size=BATCH_SIZE)
                 tsne_plot(features, labels, f"w/ LS, r={r}", figure_path)
@@ -169,7 +169,7 @@ def main():
 
         # plot grid
         plot_grid(figure_paths, titles, rows=len(exp['AvgCL']), cols=len(SMOOTHING_RATE)+1, 
-                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Model'].name}.png")
+                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Dataset']}.png")
 
 if __name__ == "__main__":
     main()
