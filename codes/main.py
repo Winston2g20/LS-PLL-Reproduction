@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 18:21:00
+LastEditTime: 2025-05-10 19:05:37
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -65,7 +65,11 @@ EXPERIMENTS = [
 
 def main():
     for exp in EXPERIMENTS: # for each models and relative datasets
-        print()
+        models = {}
+        records = {}
+        figure_paths = []
+        titles = []
+
         # load dataset
         trainset, testset = load_dataset(exp['Dataset'])
         if type(trainset.targets) == torch.Tensor:
@@ -75,9 +79,11 @@ def main():
             true_labels_train = np.array(trainset.targets)
             true_labels_test = np.array(testset.targets)
 
-        models = records = {}
-        figure_paths = titles = []
+        print()
         for avgCL in exp['AvgCL']: # for each noise levels
+            models[avgCL] = []
+            records[avgCL] = []
+
             # train model for generating datasets if model file not exist, or load model if exists
             dataset_model_path = f'{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth'
             if Path(dataset_model_path).exists():

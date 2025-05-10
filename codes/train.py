@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 18:39:34
+LastEditTime: 2025-05-10 18:57:20
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -110,7 +110,7 @@ def train_model(
     model = Model(num_classes=num_classes).to(device)
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     test_criterion = nn.CrossEntropyLoss()
-    records = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
+    record = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
 
     for epoch in range(num_epochs):
         model.train()
@@ -155,14 +155,14 @@ def train_model(
             test_loss = running_test_loss / len(testloader)
             test_acc = correct / total * 100
 
-        records['train_loss'].append(train_loss)
-        records['train_acc'].append(train_acc)
-        records['val_loss'].append(test_loss)
-        records['val_acc'].append(test_acc)
+        record['train_loss'].append(train_loss)
+        record['train_acc'].append(train_acc)
+        record['val_loss'].append(test_loss)
+        record['val_acc'].append(test_acc)
         if (epoch + 1) % 10 == 0:
             print(f'Epoch {epoch+1}: \
                     \n\tTrain Loss: {train_loss:.6f}, Train Accuracy: {train_acc:.3f} \
                     \n\tTest Loss: {test_loss:.6f}, Test Accuracy: {test_acc:.3f}')
 
-    return model, records
+    return model, record
 
