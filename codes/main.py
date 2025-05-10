@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 21:56:35
+LastEditTime: 2025-05-10 23:52:21
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -135,6 +135,7 @@ def main():
             # generate and save plots
             figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
             figure_paths.append(figure_path)
+            titles.append("w/o LS")
             features, labels = extract_features(non_smoothing_model, testset, batch_size=BATCH_SIZE)
             tsne_plot(features, labels, "w/o LS", figure_path)
             print(f"**** TSNE plot saved to {figure_path} ****")
@@ -156,6 +157,7 @@ def main():
                 # generate and save plots
                 figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
                 figure_paths.append(figure_path)
+                titles.append(f"w/ LS, r={r}")
                 features, labels = extract_features(model, testset, batch_size=BATCH_SIZE)
                 tsne_plot(features, labels, f"w/ LS, r={r}", figure_path)
                 print(f"**** TSNE plot saved to {figure_path} ****")
