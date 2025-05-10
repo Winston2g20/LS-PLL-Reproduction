@@ -76,6 +76,7 @@ The hyperparameters and experiments are defined in `codes/main.py`:
    git clone https://github.com/Jedidiah-Zhang/LS-PLL-Reproduction.git
    cd LS-PLL-Reproduction
    ```
+
 2. **Create a virtual environment**
 
    ```bash
@@ -111,9 +112,9 @@ This will:
 ### Custom Run
 
 ```bash
-./.venv/bin/python -u ./codes/main.py 	\
-  --model_path ./models       		\
-  --dataset_path ./datasets		\
+./.venv/bin/python -u ./codes/main.py   \
+  --model_path ./models                 \
+  --dataset_path ./datasets             \
   --figure_path ./doc/figures
 ```
 

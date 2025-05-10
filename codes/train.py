@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 15:22:32
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 18:28:13
+LastEditTime: 2025-05-10 18:39:34
 FilePath: /LS-PLL-Reproduction/codes/train.py
 Description: Functions relates to model training
 '''
@@ -137,14 +137,14 @@ def train_model(
 
         model.eval()
         with torch.no_grad():
-            test_loss = 0.0
+            running_test_loss = 0.0
             total = correct = 0
             for inputs, labels in testloader:
                 inputs, labels = inputs.to(device), labels.to(device)
                 outputs = model(inputs)
                 loss = test_criterion(outputs, labels)
 
-                test_loss = loss.item()
+                running_test_loss += loss.item()
                 predictions = torch.argmax(outputs, dim=1)
                 if label_format == 'multihot':
                     batch_indices = torch.arange(predictions.size(0), device=device)
@@ -152,7 +152,7 @@ def train_model(
                 else: correct += (predictions == labels).sum().item()
                 total += labels.size(0)
 
-            test_loss /= len(testloader)
+            test_loss = running_test_loss / len(testloader)
             test_acc = correct / total * 100
 
         records['train_loss'].append(train_loss)
