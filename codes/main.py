@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 20:19:32
+LastEditTime: 2025-05-10 21:03:38
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -85,7 +85,7 @@ def main():
             records[avgCL] = []
 
             # train model for generating datasets if model file not exist, or load model if exists
-            dataset_model_path = f'{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth'
+            dataset_model_path = f"{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth"
             if Path(dataset_model_path).exists():
                 model = exp['Model'](num_classes=exp['NumClasses']).to(device)
                 model.load_state_dict(torch.load(dataset_model_path))
@@ -98,7 +98,7 @@ def main():
                 print(f"**** Model saved to {dataset_model_path} ****")
 
             # load, or generate and load partial label datasets for both train and test sets
-            traindata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy'
+            traindata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy"
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
             else:
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
@@ -109,7 +109,7 @@ def main():
                 np.save(traindata_path, partial_labels_train)
                 print(f"**** Partial labels saved to {traindata_path} ****")
 
-            testdata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy'
+            testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
                 predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
