@@ -2,11 +2,13 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 21:20:51
+LastEditTime: 2025-05-11 18:55:25
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
 import torch
+import torch.nn as nn
+import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
@@ -50,11 +52,52 @@ def load_dataset(dataset_name='CIFAR10', dataset_path='../datasets'):
     return trainset, testset
 
 
-def train_dataset_model(
-    Model, trainset, testset, 
-    num_classes
-):
-    model, _ = train_model(Model, trainset, testset, num_classes=num_classes)
+def train_dataset_model(Model, trainset, testset, num_classes):
+    trainloader = DataLoader(trainset, batch_size=128, shuffle=True)
+    testloader = DataLoader(testset, batch_size=128, shuffle=False)
+    model = Model(num_classes=num_classes).to(device)
+    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+    criterion = nn.CrossEntropyLoss()
+
+    for epoch in range(100):
+        model.train()
+        running_loss = total = correct = 0
+        for inputs, labels in trainloader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            predictions = outputs.argmax(dim=1)
+            correct += (predictions == labels).sum().item()
+            total += inputs.size(0)
+
+        train_loss = running_loss / len(trainloader)
+        train_acc = correct / total * 100
+
+        model.eval()
+        with torch.no_grad():
+            running_test_loss = total = correct = 0
+            for inputs, labels in testloader:
+                inputs, labels = inputs.to(device), labels.to(device)
+                outputs = model(inputs)
+                loss = criterion(outputs, labels)
+
+                running_test_loss += loss.item()
+                predictions = torch.argmax(outputs, dim=1)
+                correct += (predictions == labels).sum().item()
+                total += labels.size(0)
+
+            test_loss = running_test_loss / len(testloader)
+            test_acc = correct / total * 100
+
+        if (epoch + 1) % 10 == 0:
+            print(f'Epoch {epoch+1}: \
+                    \n\tTrain Loss: {train_loss:.6f}, Train Accuracy: {train_acc:.3f} \
+                    \n\tTest Loss: {test_loss:.6f}, Test Accuracy: {test_acc:.3f}')
     return model
 
 

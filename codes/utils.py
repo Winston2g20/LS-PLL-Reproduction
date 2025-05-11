@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 18:08:41
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 21:47:00
+LastEditTime: 2025-05-11 15:17:01
 FilePath: /LS-PLL-Reproduction/codes/utils.py
 Description: Utils used not related to the experiments
 '''
@@ -18,6 +18,7 @@ import os
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 seed = 42
 torch.manual_seed(seed)
+if torch.cuda.is_available(): torch.cuda.manual_seed_all(seed)
 
 
 def validate_path(path):
@@ -40,12 +41,13 @@ def extract_features(model, dataset, batch_size=128):
     return torch.cat(features).numpy(), torch.cat(labels).numpy()
 
 
-def tsne_plot(features, labels, title, save_path):
+def tsne_plot(features, labels, save_path, ylabel=None):
     tsne = TSNE(n_components=2, perplexity=30, max_iter=3000, random_state=seed)
     reduced = tsne.fit_transform(features)
     plt.figure(figsize=(4, 4))
     sns.scatterplot(x=reduced[:,0], y=reduced[:,1], hue=labels, palette='tab10', s=10, linewidth=0)
-    plt.title(title, fontsize=10)
+    # plt.title(title, fontsize=10)
+    if ylabel: plt.ylabel(ylabel, fontsize=10)
     plt.xticks([]); plt.yticks([]); plt.legend([],[], frameon=False)
     plt.tight_layout()
     plt.savefig(save_path, dpi=300)
@@ -53,12 +55,12 @@ def tsne_plot(features, labels, title, save_path):
 
 
 def plot_grid(image_paths, titles, rows, cols, save_path):
-    fig, axes = plt.subplots(rows, cols, figsize=(2.5 * cols, 2.5 * rows))
+    _, axes = plt.subplots(rows, cols, figsize=(2.5 * cols, 2.5 * rows))
     for i, ax in enumerate(axes.flatten()):
         img = mpimg.imread(image_paths[i])
         ax.imshow(img)
         ax.axis('off')
-        ax.set_title(titles[i], fontsize=9)
+        ax.set_title(titles[i], fontsize=10, loc='bottom')
     plt.tight_layout()
     plt.savefig(save_path, dpi=300)
     plt.close()

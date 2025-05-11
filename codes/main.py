@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 23:52:21
+LastEditTime: 2025-05-11 18:10:53
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -67,6 +67,7 @@ def main():
     for exp in EXPERIMENTS: # for each models and relative datasets
         models, records = {}, {}
         figure_paths, titles = [], []
+        plot_idx = 0
         print()
 
         # load dataset
@@ -123,10 +124,9 @@ def main():
             train_set = PartialLabelDataset(trainset, partial_labels_train, transform=transforms.ToTensor())
             test_set = PartialLabelDataset(testset, partial_labels_test, transform=transforms.ToTensor())
             print(f"**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and no label smoothing ****")
-            non_smoothing_model, non_smoothing_record = train_model(exp['Model'], train_set, test_set, 
-                                                                    num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
-                                                                    lr=LEARNING_RATE, momentum=MOMENTUM,
-                                                                    num_classes=exp['NumClasses'], label_format='multihot')
+            non_smoothing_model, non_smoothing_record = train_model(exp['Model'], train_set, test_set, num_epochs=EPOCHS, 
+                                                                    batch_size=BATCH_SIZE, lr=LEARNING_RATE, momentum=MOMENTUM, 
+                                                                    weighting_param=WEIGHTING_PARAM, num_classes=exp['NumClasses'])
             models[avgCL].append(non_smoothing_model)
             records[avgCL].append(non_smoothing_record)
             torch.save(non_smoothing_model.state_dict(), model_path+"/r_noLS.npy")
@@ -135,20 +135,18 @@ def main():
             # generate and save plots
             figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
             figure_paths.append(figure_path)
-            titles.append("w/o LS")
+            titles.append(f"({chr(97+plot_idx)}) w/o LS")
+            plot_idx += 1
             features, labels = extract_features(non_smoothing_model, testset, batch_size=BATCH_SIZE)
-            tsne_plot(features, labels, "w/o LS", figure_path)
+            tsne_plot(features, labels, figure_path, f"Avg.#CL={avgCL}")
             print(f"**** TSNE plot saved to {figure_path} ****")
 
             # train models with label smoothing across different noise levels
             for r in SMOOTHING_RATE:
                 print(f"\n**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and a smoothing rate of {r} ****")
-                model, record = train_model(exp['Model'], train_set, test_set, 
-                            num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
-                            lr=LEARNING_RATE, momentum=MOMENTUM, 
-                            num_classes=exp['NumClasses'],
-                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r, ema_decay=WEIGHTING_PARAM).to(device), 
-                            label_format='multihot')
+                model, record = train_model(exp['Model'], train_set, test_set, num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
+                                            lr=LEARNING_RATE, momentum=MOMENTUM, weighting_param=WEIGHTING_PARAM, 
+                                            num_classes=exp['NumClasses'], smoothing_rate=r)
                 models[avgCL].append(model)
                 records[avgCL].append(record)
                 torch.save(non_smoothing_model.state_dict(), model_path+f"/r_{r}.npy")
@@ -157,9 +155,10 @@ def main():
                 # generate and save plots
                 figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
                 figure_paths.append(figure_path)
-                titles.append(f"w/ LS, r={r}")
+                titles.append(f"({chr(97+len(titles))}) w/ LS, r={r}")
+                plot_idx += 1
                 features, labels = extract_features(model, testset, batch_size=BATCH_SIZE)
-                tsne_plot(features, labels, f"w/ LS, r={r}", figure_path)
+                tsne_plot(features, labels, figure_path)
                 print(f"**** TSNE plot saved to {figure_path} ****")
 
             # save records into the models folder
