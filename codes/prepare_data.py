@@ -78,6 +78,25 @@ def get_topk_predictions(model, dataset, batch_size=128, k=6):
         topk_preds = np.concatenate(topk_preds, axis=0)
     return topk_preds
 
+def get_random_predictions(model, dataset, batch_size=128, k=6):
+    model.eval()
+    num_classes = model.fc.out_features
+    with torch.no_grad():
+        randomk_preds = []
+        for inputs, targets in DataLoader(dataset, batch_size=batch_size):
+            inputs, targets = inputs.to(device), targets.to(device)
+            actual_batch_size = inputs.size(0)
+            
+            random_preds = []
+            for i in range(actual_batch_size):
+                possible_labels = list(set(range(num_classes)) - {targets[i].item()})
+                random_k = np.random.choice(possible_labels, size=k, replace=False)
+                random_preds.append(random_k)
+
+            randomk_preds.append(np.arrays(random_preds))
+        randomk_preds = np.concatenate(randomk_preds, axis=0)
+    return randomk_preds
+
 
 def generate_partial_labels(true_labels, topk_preds, avg_cl, k=6, num_classes=10):
     n = len(true_labels)
