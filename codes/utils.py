@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-09 18:08:41
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-11 15:17:01
+LastEditTime: 2025-05-11 22:34:41
 FilePath: /LS-PLL-Reproduction/codes/utils.py
 Description: Utils used not related to the experiments
 '''
@@ -60,7 +60,7 @@ def plot_grid(image_paths, titles, rows, cols, save_path):
         img = mpimg.imread(image_paths[i])
         ax.imshow(img)
         ax.axis('off')
-        ax.set_title(titles[i], fontsize=10, loc='bottom')
+        ax.set_title(titles[i], fontsize=10)
     plt.tight_layout()
     plt.savefig(save_path, dpi=300)
     plt.close()

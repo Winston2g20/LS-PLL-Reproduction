@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-11 18:55:25
+LastEditTime: 2025-05-11 20:34:07
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
@@ -17,7 +17,6 @@ import numpy as np
 import pickle
 
 from ResNet18 import ResNet18
-from train import train_model
 from utils import device, seed
 
 np.random.seed(seed)
@@ -120,6 +119,7 @@ def get_topk_predictions(model, dataset, batch_size=128, k=6):
             topk_preds.append(topk.cpu().numpy())
         topk_preds = np.concatenate(topk_preds, axis=0)
     return topk_preds
+
 
 def get_random_predictions(model, dataset, batch_size=128, k=6):
     model.eval()
