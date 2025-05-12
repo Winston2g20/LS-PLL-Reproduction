@@ -100,7 +100,7 @@ def main():
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
             else:
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
-                predictions_train = get_topk_predictions(model, trainset, k=exp['TopK'])
+                predictions_train = get_random_predictions(model, trainset, k=exp['TopK'])
                 partial_labels_train, _ = generate_partial_labels(true_labels_train, predictions_train, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -110,7 +110,7 @@ def main():
             testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
-                predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
+                predictions_test = get_random_predictions(model, testset, k=exp['TopK'])
                 partial_labels_test, _ = generate_partial_labels(true_labels_test, predictions_test, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
