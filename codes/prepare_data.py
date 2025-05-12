@@ -2,11 +2,13 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 15:24:13
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 17:14:55
+LastEditTime: 2025-05-11 20:34:07
 FilePath: /LS-PLL-Reproduction/codes/prepare_data.py
 Description: The codes to download, train and generate partial labels for datasets.
 '''
 import torch
+import torch.nn as nn
+import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
@@ -15,13 +17,12 @@ import numpy as np
 import pickle
 
 from ResNet18 import ResNet18
-from train import train_model
 from utils import device, seed
 
 np.random.seed(seed)
 
 
-def load_dataset(dataset_name='CIFAR10'):
+def load_dataset(dataset_name='CIFAR10', dataset_path='../datasets'):
     transform_train = transforms.Compose([
         transforms.RandomHorizontalFlip(),
         transforms.RandomRotation(10),
@@ -34,27 +35,68 @@ def load_dataset(dataset_name='CIFAR10'):
     ])
     print(f"**** Loading {dataset_name} dataset ****")
     if dataset_name == 'CIFAR10':
-        trainset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.CIFAR10(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.CIFAR10(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.CIFAR10(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'CIFAR100':
-        trainset = datasets.CIFAR100(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.CIFAR100(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.CIFAR100(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.CIFAR100(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'FashionMNIST':
-        trainset = datasets.FashionMNIST(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.FashionMNIST(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.FashionMNIST(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.FashionMNIST(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     elif dataset_name == 'KuzushijiMNIST':
-        trainset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=True, download=True, transform=transform_train)
-        testset = datasets.KMNIST(root=f'../datasets/{dataset_name}', train=False, download=True, transform=transform_test)
+        trainset = datasets.KMNIST(root=f"{dataset_path}/{dataset_name}", train=True, download=True, transform=transform_train)
+        testset = datasets.KMNIST(root=f"{dataset_path}/{dataset_name}", train=False, download=True, transform=transform_test)
     else:
         raise ValueError(f"Dataset {dataset_name} not supported.")
     return trainset, testset
 
 
-def train_dataset_model(
-    Model, trainset, testset, 
-    num_classes
-):
-    model, _ = train_model(Model, trainset, testset, num_classes=num_classes)
+def train_dataset_model(Model, trainset, testset, num_classes):
+    trainloader = DataLoader(trainset, batch_size=128, shuffle=True)
+    testloader = DataLoader(testset, batch_size=128, shuffle=False)
+    model = Model(num_classes=num_classes).to(device)
+    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+    criterion = nn.CrossEntropyLoss()
+
+    for epoch in range(100):
+        model.train()
+        running_loss = total = correct = 0
+        for inputs, labels in trainloader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            predictions = outputs.argmax(dim=1)
+            correct += (predictions == labels).sum().item()
+            total += inputs.size(0)
+
+        train_loss = running_loss / len(trainloader)
+        train_acc = correct / total * 100
+
+        model.eval()
+        with torch.no_grad():
+            running_test_loss = total = correct = 0
+            for inputs, labels in testloader:
+                inputs, labels = inputs.to(device), labels.to(device)
+                outputs = model(inputs)
+                loss = criterion(outputs, labels)
+
+                running_test_loss += loss.item()
+                predictions = torch.argmax(outputs, dim=1)
+                correct += (predictions == labels).sum().item()
+                total += labels.size(0)
+
+            test_loss = running_test_loss / len(testloader)
+            test_acc = correct / total * 100
+
+        if (epoch + 1) % 10 == 0:
+            print(f'Epoch {epoch+1}: \
+                    \n\tTrain Loss: {train_loss:.6f}, Train Accuracy: {train_acc:.3f} \
+                    \n\tTest Loss: {test_loss:.6f}, Test Accuracy: {test_acc:.3f}')
     return model
 
 
@@ -77,6 +119,7 @@ def get_topk_predictions(model, dataset, batch_size=128, k=6):
             topk_preds.append(topk.cpu().numpy())
         topk_preds = np.concatenate(topk_preds, axis=0)
     return topk_preds
+
 
 def get_random_predictions(model, dataset, batch_size=128, k=6):
     model.eval()
