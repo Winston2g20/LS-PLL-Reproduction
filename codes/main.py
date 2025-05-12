@@ -27,9 +27,9 @@ from utils import validate_path
 parser = argparse.ArgumentParser(description='Full experiments')
 parser.add_argument('--model_path', type=validate_path, default='./models', help="Path to the models folder")
 parser.add_argument('--dataset_path', type=validate_path, default='./datasets', help="Path to the datasets folder")
-parser.add_argument('--figure_path', type=validate_path, default='./datasets', help="Path to the figures folder")
+parser.add_argument('--figure_path', type=validate_path, default='./doc/figures', help="Path to the figures folder")
 args = parser.parse_args()
-MODEL_PATH, DATASET_PATH = args.model_path, args.dataset_path
+MODEL_PATH, DATASET_PATH,FIGURE_PATH = args.model_path, args.dataset_path,args.figure_path
 
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
@@ -108,7 +108,7 @@ def main():
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
             else:
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
-                predictions_train = get_topk_predictions(model, trainset, k=exp['TopK'])
+                predictions_train = get_random_predictions(model, trainset, k=exp['TopK'])
                 partial_labels_train, _ = generate_partial_labels(true_labels_train, predictions_train, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -118,7 +118,7 @@ def main():
             testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
-                predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
+                predictions_test = get_random_predictions(model, testset, k=exp['TopK'])
                 partial_labels_test, _ = generate_partial_labels(true_labels_test, predictions_test, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -142,7 +142,7 @@ def main():
             print(f"**** Model saved to {model_path}/r_noLS.npy ****")
 
             # generate and save plots
-            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
+            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLSRandom.png"
             figure_paths.append(figure_path)
             titles.append(f"({chr(97+plot_idx)}) w/o LS")
             plot_idx += 1
@@ -162,7 +162,7 @@ def main():
                 print(f"**** Model saved to {model_path}/r_{r}.npy ****")
 
                 # generate and save plots
-                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
+                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}Random.png"
                 figure_paths.append(figure_path)
                 titles.append(f"({chr(97+len(titles))}) w/ LS, r={r}")
                 plot_idx += 1
