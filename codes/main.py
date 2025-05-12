@@ -91,7 +91,7 @@ def main():
             dataset_model_path = f"{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth"
             if Path(dataset_model_path).exists():
                 model = exp['Model'](num_classes=exp['NumClasses']).to(device)
-                model.load_state_dict(torch.load(model_path))
+                model.load_state_dict(torch.load(dataset_model_path, map_location=torch.device('cpu')))
                 model.eval()
             else:
                 print(f"**** Training model for {exp['Dataset']} with {exp['Model'].name} ****")
