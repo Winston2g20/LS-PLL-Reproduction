@@ -27,6 +27,7 @@ from utils import validate_path
 parser = argparse.ArgumentParser(description='Full experiments')
 parser.add_argument('--model_path', type=validate_path, default='./models', help="Path to the models folder")
 parser.add_argument('--dataset_path', type=validate_path, default='./datasets', help="Path to the datasets folder")
+parser.add_argument('--figure_path', type=validate_path, default='./datasets', help="Path to the figures folder")
 args = parser.parse_args()
 MODEL_PATH, DATASET_PATH = args.model_path, args.dataset_path
 
