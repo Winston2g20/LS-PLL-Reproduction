@@ -2,7 +2,7 @@
 Author: Jedidiah-Zhang yanzhe_zhang@protonmail.com
 Date: 2025-05-06 16:42:21
 LastEditors: Jedidiah-Zhang yanzhe_zhang@protonmail.com
-LastEditTime: 2025-05-10 20:19:32
+LastEditTime: 2025-05-09 18:13:32
 FilePath: /LS-PLL-Reproduction/codes/main.py
 Description: Main script containing the complete pipeline for training and evaluating models with partial labels.
 '''
@@ -16,19 +16,20 @@ from LeNet5 import LeNet5
 from ResNet18 import ResNet18
 from ResNet56 import ResNet56
 from train import LS_PLL_CrossEntropy, PartialLabelDataset, train_model
-from utils import validate_path, extract_features, tsne_plot, plot_grid
+from utils import validate_path
 
+# MODEL_PATH = './models'
+# DATASET_PATH = './datasets'
 parser = argparse.ArgumentParser(description='Full experiments')
-parser.add_argument('--model_path', type=validate_path, default='./models', help="Path to models folder")
-parser.add_argument('--dataset_path', type=validate_path, default='./datasets', help="Path to datasets folder")
-parser.add_argument('--figure_path', type=validate_path, default='./doc/figures', help="Path to saved figures folder")
+parser.add_argument('--model_path', type=validate_path, default='./models', help="Path to the models folder")
+parser.add_argument('--dataset_path', type=validate_path, default='./datasets', help="Path to the datasets folder")
 args = parser.parse_args()
-MODEL_PATH, DATASET_PATH, FIGURE_PATH = args.model_path, args.dataset_path, args.figure_path
+MODEL_PATH, DATASET_PATH = args.model_path, args.dataset_path
 
 BATCH_SIZE = 128
 LEARNING_RATE = 0.01
 EPOCHS = 200
-WEIGHTING_PARAM = 0.9
+WEIGHT_DECAY = 1e-3
 MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
@@ -65,11 +66,7 @@ EXPERIMENTS = [
 
 def main():
     for exp in EXPERIMENTS: # for each models and relative datasets
-        models = {}
-        records = {}
-        figure_paths = []
-        titles = []
-
+        print()
         # load dataset
         trainset, testset = load_dataset(exp['Dataset'])
         if type(trainset.targets) == torch.Tensor:
@@ -79,26 +76,24 @@ def main():
             true_labels_train = np.array(trainset.targets)
             true_labels_test = np.array(testset.targets)
 
-        print()
+        if not os.path.exists(MODEL_PATH): os.makedirs(MODEL_PATH)
         for avgCL in exp['AvgCL']: # for each noise levels
-            models[avgCL] = []
-            records[avgCL] = []
-
-            # train model for generating datasets if model file not exist, or load model if exists
-            dataset_model_path = f'{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth'
-            if Path(dataset_model_path).exists():
+            # train model if model file not exist, or load model if exists
+            model_path = f"{MODEL_PATH}/{exp['Dataset']}_{exp['Model'].name}.pth"
+            if Path(model_path).exists():
                 model = exp['Model'](num_classes=exp['NumClasses']).to(device)
-                model.load_state_dict(torch.load(dataset_model_path))
+                model.load_state_dict(torch.load(model_path))
                 model.eval()
             else:
-                print(f"**** Training {exp['Model'].name} model for {exp['Dataset']} to generate PL ****")
+                print(f"**** Training model for {exp['Dataset']} with {exp['Model'].name} ****")
                 model = train_dataset_model(exp['Model'], trainset, testset,
                                             num_classes=exp['NumClasses'])
-                torch.save(model.state_dict(), dataset_model_path)
-                print(f"**** Model saved to {dataset_model_path} ****")
+                torch.save(model.state_dict(), model_path)
+                print(f"**** Model saved to {model_path} ****")
 
-            # load, or generate and load partial label datasets for both train and test sets
-            traindata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy'
+            # load, or generate and load partial datasets for both train and test sets
+            if not os.path.exists(DATASET_PATH): os.makedirs(DATASET_PATH)
+            traindata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_train.npy"
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
             else:
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
@@ -109,7 +104,7 @@ def main():
                 np.save(traindata_path, partial_labels_train)
                 print(f"**** Partial labels saved to {traindata_path} ****")
 
-            testdata_path = f'{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy'
+            testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
                 predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
@@ -119,57 +114,27 @@ def main():
                 np.save(testdata_path, partial_labels_test)
                 print(f"**** Partial labels saved to {testdata_path} ****")
 
-            # Train models with partial labels without label smoothing
-            # using nn.CrossEntropy() as default.
-            model_path = MODEL_PATH + f"/{exp['Model'].name}/avgcl{avgCL}"
-            if not os.path.exists(model_path): os.makedirs(model_path)
+            # Train model with partial labels without label smoothing
+            # using nn.CrossEntropy as default.
             trainset = PartialLabelDataset(trainset, partial_labels_train, transform=transforms.ToTensor())
             testset = PartialLabelDataset(testset, partial_labels_test, transform=transforms.ToTensor())
-            print(f"**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and no label smoothing ****")
-            non_smoothing_model, non_smoothing_record = train_model(exp['Model'], trainset, testset, 
-                                                                    num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
-                                                                    lr=LEARNING_RATE, momentum=MOMENTUM,
-                                                                    num_classes=exp['NumClasses'], label_format='multihot')
-            models[avgCL].append(non_smoothing_model)
-            records[avgCL].append(non_smoothing_record)
-            torch.save(non_smoothing_model.state_dict(), model_path+"/r_noLS.npy")
-            print(f"**** Model saved to {model_path}/r_noLS.npy ****")
+            print(f"**** Training on partial labelled {exp['Dataset']} without label smoothing ****")
+            _, non_smoothing_record = train_model(exp['Model'], trainset, testset, 
+                                                num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
+                                                lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY, 
+                                                num_classes=exp['NumClasses'], label_format='multihot')
 
-            # generate and save plots
-            figure_path = FIGURE_PATH + f"/tsne_{exp['Model'].name}_cl{avgCL}_r_noLS.png"
-            figure_paths.append(figure_path)
-            features, labels = extract_features(non_smoothing_model, testset, batch_size=BATCH_SIZE)
-            tsne_plot(features, labels, "w/o LS", figure_path)
-            print(f"**** TSNE plot saved to {figure_path} ****")
-
-            # train models with label smoothing across different noise levels
+            # train model with label smoothing across different smoothing rates
+            smoothing_records = {}
             for r in SMOOTHING_RATE:
-                print(f"\n**** Training {exp['Model'].name} on partial labelled {exp['Dataset']} with Avg.#CL={avgCL} and a smoothing rate of {r} ****")
-                model, record = train_model(exp['Model'], trainset, testset, 
+                print(f"\n**** Training on partial labelled {exp['Dataset']} with a smoothing rate of {r} ****")
+                _, record = train_model(exp['Model'], trainset, testset, 
                             num_epochs=EPOCHS, batch_size=BATCH_SIZE, 
                             lr=LEARNING_RATE, momentum=MOMENTUM, 
-                            num_classes=exp['NumClasses'],
-                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r, ema_decay=WEIGHTING_PARAM).to(device), 
+                            weight_decay=WEIGHT_DECAY, num_classes=exp['NumClasses'],
+                            criterion=LS_PLL_CrossEntropy(smoothing_rate=r).to(device), 
                             label_format='multihot')
-                models[avgCL].append(model)
-                records[avgCL].append(record)
-                torch.save(non_smoothing_model.state_dict(), model_path+f"/r_{r}.npy")
-                print(f"**** Model saved to {model_path}/r_{r}.npy ****")
-
-                # generate and save plots
-                figure_path = FIGURE_PATH + f"/tsne_{exp['Model'].name}_cl{avgCL}_r_{r}.png"
-                figure_paths.append(figure_path)
-                features, labels = extract_features(model, testset, batch_size=BATCH_SIZE)
-                tsne_plot(features, labels, f"w/ LS, r={r}", figure_path)
-                print(f"**** TSNE plot saved to {figure_path} ****")
-
-            # save records into the models folder
-            with open(model_path+'/records.pkl') as f:
-                pickle.dump(records, f)
-
-        # plot grid
-        plot_grid(figure_paths, titles, rows=len(exp['AvgCL']), cols=len(SMOOTHING_RATE)+1, 
-                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Model'].name}.png")
+                smoothing_records[r] = record
 
 if __name__ == "__main__":
     main()
