@@ -18,6 +18,7 @@ import pickle
 
 from ResNet18 import ResNet18
 from utils import device, seed
+from utils import validate_path, extract_features, tsne_plot, plot_grid
 
 np.random.seed(seed)
 
@@ -136,7 +137,7 @@ def get_random_predictions(model, dataset, batch_size=128, k=6):
                 random_k = np.random.choice(possible_labels, size=k, replace=False)
                 random_preds.append(random_k)
 
-            randomk_preds.append(np.arrays(random_preds))
+            randomk_preds.append(np.array(random_preds))
         randomk_preds = np.concatenate(randomk_preds, axis=0)
     return randomk_preds
 
