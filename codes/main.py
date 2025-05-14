@@ -32,13 +32,13 @@ WEIGHTING_PARAM = 0.9
 MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
-    {
-        'Dataset': 'FashionMNIST', 
-        'Model': LeNet5, 
-        'AvgCL': [3, 4, 5], 
-        'NumClasses': 10, 
-        'TopK': 6
-    },
+#    {
+#        'Dataset': 'FashionMNIST', 
+#        'Model': LeNet5, 
+#        'AvgCL': [3, 4, 5], 
+#        'NumClasses': 10, 
+#        'TopK': 6
+#    },
     {
         'Dataset': 'KuzushijiMNIST', 
         'Model': LeNet5, 
