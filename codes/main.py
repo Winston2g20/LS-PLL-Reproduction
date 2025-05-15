@@ -33,33 +33,20 @@ MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
     {
+    {
+        'Dataset': 'CIFAR10', 
+        'Model': ResNet18, 
+        'AvgCL': [5],
+        'NumClasses': 10, 
+        'TopK': 6
+    },
+    {
         'Dataset': 'FashionMNIST', 
         'Model': LeNet5, 
         'AvgCL': [3, 4, 5], 
         'NumClasses': 10, 
         'TopK': 6
     },
-    {
-        'Dataset': 'KuzushijiMNIST', 
-        'Model': LeNet5, 
-        'AvgCL': [3, 4, 5],
-        'NumClasses': 10, 
-        'TopK': 6
-    },
-    {
-        'Dataset': 'CIFAR10', 
-        'Model': ResNet18, 
-        'AvgCL': [3, 4, 5],
-        'NumClasses': 10, 
-        'TopK': 6
-    },
-    {
-        'Dataset': 'CIFAR100', 
-        'Model': ResNet56, 
-        'AvgCL': [7, 9, 11],
-        'NumClasses': 100, 
-        'TopK': 20
-    }
 ]
 
 
