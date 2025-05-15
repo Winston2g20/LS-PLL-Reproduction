@@ -33,7 +33,6 @@ MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
     {
-    {
         'Dataset': 'CIFAR10', 
         'Model': ResNet18, 
         'AvgCL': [5],
