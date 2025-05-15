@@ -1,0 +1,2081 @@
+
+**** Loading KuzushijiMNIST dataset ****
+**** Training LeNet5 model for KuzushijiMNIST to generate PL ****
+Epoch 10:                     
+	Train Loss: 0.103817, Train Accuracy: 96.697                     
+	Test Loss: 0.271023, Test Accuracy: 92.230
+Epoch 20:                     
+	Train Loss: 0.062996, Train Accuracy: 97.987                     
+	Test Loss: 0.232818, Test Accuracy: 93.820
+Epoch 30:                     
+	Train Loss: 0.046535, Train Accuracy: 98.430                     
+	Test Loss: 0.232422, Test Accuracy: 94.440
+Epoch 40:                     
+	Train Loss: 0.041184, Train Accuracy: 98.593                     
+	Test Loss: 0.241260, Test Accuracy: 94.320
+Epoch 50:                     
+	Train Loss: 0.034316, Train Accuracy: 98.835                     
+	Test Loss: 0.245484, Test Accuracy: 94.480
+Epoch 60:                     
+	Train Loss: 0.027314, Train Accuracy: 99.050                     
+	Test Loss: 0.266344, Test Accuracy: 94.710
+Epoch 70:                     
+	Train Loss: 0.027409, Train Accuracy: 99.087                     
+	Test Loss: 0.252872, Test Accuracy: 94.900
+Epoch 80:                     
+	Train Loss: 0.023799, Train Accuracy: 99.185                     
+	Test Loss: 0.278928, Test Accuracy: 94.740
+Epoch 90:                     
+	Train Loss: 0.022467, Train Accuracy: 99.253                     
+	Test Loss: 0.288913, Test Accuracy: 95.050
+Epoch 100:                     
+	Train Loss: 0.018154, Train Accuracy: 99.397                     
+	Test Loss: 0.288998, Test Accuracy: 95.060
+**** Model saved to ../models/PL_KuzushijiMNIST_LeNet5.pth ****
+**** Generating partial labels for KuzushijiMNIST with avgCL 3 ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl3_train.npy ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl3_test.npy ****
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.085686, Train Accuracy: 37.385                     
+	Test Loss: 6.719378, Test Accuracy: 66.950
+Epoch 20:                     
+	Train Loss: 2.017673, Train Accuracy: 44.342                     
+	Test Loss: 6.584641, Test Accuracy: 81.690
+Epoch 30:                     
+	Train Loss: 1.996304, Train Accuracy: 46.488                     
+	Test Loss: 6.554675, Test Accuracy: 84.820
+Epoch 40:                     
+	Train Loss: 1.986864, Train Accuracy: 47.465                     
+	Test Loss: 6.541825, Test Accuracy: 86.140
+Epoch 50:                     
+	Train Loss: 1.970209, Train Accuracy: 49.165                     
+	Test Loss: 6.498625, Test Accuracy: 90.780
+Epoch 60:                     
+	Train Loss: 1.965865, Train Accuracy: 49.575                     
+	Test Loss: 6.497537, Test Accuracy: 90.690
+Epoch 70:                     
+	Train Loss: 1.961514, Train Accuracy: 50.002                     
+	Test Loss: 6.499828, Test Accuracy: 90.630
+Epoch 80:                     
+	Train Loss: 1.960647, Train Accuracy: 50.070                     
+	Test Loss: 6.503631, Test Accuracy: 90.280
+Epoch 90:                     
+	Train Loss: 1.962399, Train Accuracy: 49.890                     
+	Test Loss: 6.499560, Test Accuracy: 90.800
+Epoch 100:                     
+	Train Loss: 1.965850, Train Accuracy: 49.523                     
+	Test Loss: 6.503110, Test Accuracy: 90.460
+Epoch 110:                     
+	Train Loss: 1.965799, Train Accuracy: 49.518                     
+	Test Loss: 6.506186, Test Accuracy: 90.010
+Epoch 120:                     
+	Train Loss: 1.955244, Train Accuracy: 50.588                     
+	Test Loss: 6.520618, Test Accuracy: 88.770
+Epoch 130:                     
+	Train Loss: 1.948381, Train Accuracy: 51.263                     
+	Test Loss: 6.521784, Test Accuracy: 88.560
+Epoch 140:                     
+	Train Loss: 1.946691, Train Accuracy: 51.432                     
+	Test Loss: 6.512972, Test Accuracy: 89.400
+Epoch 150:                     
+	Train Loss: 1.945393, Train Accuracy: 51.565                     
+	Test Loss: 6.515395, Test Accuracy: 89.320
+Epoch 160:                     
+	Train Loss: 1.947121, Train Accuracy: 51.397                     
+	Test Loss: 6.519109, Test Accuracy: 88.840
+Epoch 170:                     
+	Train Loss: 1.948029, Train Accuracy: 51.303                     
+	Test Loss: 6.518583, Test Accuracy: 88.880
+Epoch 180:                     
+	Train Loss: 1.950122, Train Accuracy: 51.078                     
+	Test Loss: 6.519561, Test Accuracy: 88.740
+Epoch 190:                     
+	Train Loss: 1.950244, Train Accuracy: 51.063                     
+	Test Loss: 6.521529, Test Accuracy: 88.560
+Epoch 200:                     
+	Train Loss: 1.950608, Train Accuracy: 51.023                     
+	Test Loss: 6.522414, Test Accuracy: 88.450
+**** Model saved to ../models/LeNet5/avgcl3/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_noLSrandom.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.054736, Train Accuracy: 40.515                     
+	Test Loss: 6.665811, Test Accuracy: 72.730
+Epoch 20:                     
+	Train Loss: 2.005636, Train Accuracy: 45.598                     
+	Test Loss: 6.576965, Test Accuracy: 82.500
+Epoch 30:                     
+	Train Loss: 1.825817, Train Accuracy: 65.467                     
+	Test Loss: 6.545198, Test Accuracy: 85.770
+Epoch 40:                     
+	Train Loss: 1.608851, Train Accuracy: 89.573                     
+	Test Loss: 6.537091, Test Accuracy: 86.710
+Epoch 50:                     
+	Train Loss: 1.571968, Train Accuracy: 93.635                     
+	Test Loss: 6.533619, Test Accuracy: 87.290
+Epoch 60:                     
+	Train Loss: 1.557531, Train Accuracy: 95.195                     
+	Test Loss: 6.534373, Test Accuracy: 87.330
+Epoch 70:                     
+	Train Loss: 1.555844, Train Accuracy: 95.362                     
+	Test Loss: 6.530296, Test Accuracy: 87.870
+Epoch 80:                     
+	Train Loss: 1.568244, Train Accuracy: 93.968                     
+	Test Loss: 6.529805, Test Accuracy: 87.810
+Epoch 90:                     
+	Train Loss: 1.594766, Train Accuracy: 91.010                     
+	Test Loss: 6.534298, Test Accuracy: 87.390
+Epoch 100:                     
+	Train Loss: 1.632425, Train Accuracy: 86.818                     
+	Test Loss: 6.533679, Test Accuracy: 87.500
+Epoch 110:                     
+	Train Loss: 1.674704, Train Accuracy: 82.093                     
+	Test Loss: 6.515676, Test Accuracy: 89.360
+Epoch 120:                     
+	Train Loss: 1.710235, Train Accuracy: 78.113                     
+	Test Loss: 6.514870, Test Accuracy: 89.510
+Epoch 130:                     
+	Train Loss: 1.756167, Train Accuracy: 72.995                     
+	Test Loss: 6.505197, Test Accuracy: 90.410
+Epoch 140:                     
+	Train Loss: 1.806086, Train Accuracy: 67.400                     
+	Test Loss: 6.504246, Test Accuracy: 90.600
+Epoch 150:                     
+	Train Loss: 1.843702, Train Accuracy: 63.225                     
+	Test Loss: 6.503227, Test Accuracy: 90.570
+Epoch 160:                     
+	Train Loss: 1.870563, Train Accuracy: 60.548                     
+	Test Loss: 6.525447, Test Accuracy: 88.280
+Epoch 170:                     
+	Train Loss: 1.740109, Train Accuracy: 76.622                     
+	Test Loss: 6.678708, Test Accuracy: 73.230
+Epoch 180:                     
+	Train Loss: 1.663766, Train Accuracy: 85.875                     
+	Test Loss: 6.758216, Test Accuracy: 65.090
+Epoch 190:                     
+	Train Loss: 1.631241, Train Accuracy: 89.828                     
+	Test Loss: 6.832755, Test Accuracy: 57.540
+Epoch 200:                     
+	Train Loss: 1.599934, Train Accuracy: 93.702                     
+	Test Loss: 6.892091, Test Accuracy: 51.620
+**** Model saved to ../models/LeNet5/avgcl3/r_0.1.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_0.1random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and a smoothing rate of 0.3 ****
+Epoch 10:                     
+	Train Loss: 2.077978, Train Accuracy: 38.227                     
+	Test Loss: 6.688047, Test Accuracy: 69.970
+Epoch 20:                     
+	Train Loss: 1.968120, Train Accuracy: 51.407                     
+	Test Loss: 6.572774, Test Accuracy: 83.020
+Epoch 30:                     
+	Train Loss: 1.696784, Train Accuracy: 89.528                     
+	Test Loss: 6.545960, Test Accuracy: 85.950
+Epoch 40:                     
+	Train Loss: 1.666761, Train Accuracy: 93.572                     
+	Test Loss: 6.541610, Test Accuracy: 86.540
+Epoch 50:                     
+	Train Loss: 1.656899, Train Accuracy: 94.870                     
+	Test Loss: 6.536088, Test Accuracy: 87.130
+Epoch 60:                     
+	Train Loss: 1.650140, Train Accuracy: 95.652                     
+	Test Loss: 6.536840, Test Accuracy: 87.080
+Epoch 70:                     
+	Train Loss: 1.650297, Train Accuracy: 95.567                     
+	Test Loss: 6.529845, Test Accuracy: 87.870
+Epoch 80:                     
+	Train Loss: 1.652107, Train Accuracy: 95.227                     
+	Test Loss: 6.535348, Test Accuracy: 87.390
+Epoch 90:                     
+	Train Loss: 1.660961, Train Accuracy: 93.942                     
+	Test Loss: 6.532569, Test Accuracy: 87.590
+Epoch 100:                     
+	Train Loss: 1.678222, Train Accuracy: 91.458                     
+	Test Loss: 6.532160, Test Accuracy: 87.580
+Epoch 110:                     
+	Train Loss: 1.693772, Train Accuracy: 89.187                     
+	Test Loss: 6.529795, Test Accuracy: 87.990
+Epoch 120:                     
+	Train Loss: 1.711182, Train Accuracy: 86.697                     
+	Test Loss: 6.532004, Test Accuracy: 87.720
+Epoch 130:                     
+	Train Loss: 1.739250, Train Accuracy: 82.695                     
+	Test Loss: 6.531674, Test Accuracy: 87.760
+Epoch 140:                     
+	Train Loss: 1.748323, Train Accuracy: 81.373                     
+	Test Loss: 6.530971, Test Accuracy: 87.800
+Epoch 150:                     
+	Train Loss: 1.762166, Train Accuracy: 79.398                     
+	Test Loss: 6.533974, Test Accuracy: 87.520
+Epoch 160:                     
+	Train Loss: 1.773946, Train Accuracy: 77.690                     
+	Test Loss: 6.532002, Test Accuracy: 87.680
+Epoch 170:                     
+	Train Loss: 1.774978, Train Accuracy: 77.540                     
+	Test Loss: 6.531867, Test Accuracy: 87.720
+Epoch 180:                     
+	Train Loss: 1.777777, Train Accuracy: 77.125                     
+	Test Loss: 6.531853, Test Accuracy: 87.680
+Epoch 190:                     
+	Train Loss: 1.778385, Train Accuracy: 77.027                     
+	Test Loss: 6.532484, Test Accuracy: 87.630
+Epoch 200:                     
+	Train Loss: 1.778644, Train Accuracy: 76.983                     
+	Test Loss: 6.531926, Test Accuracy: 87.650
+**** Model saved to ../models/LeNet5/avgcl3/r_0.3.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_0.3random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and a smoothing rate of 0.5 ****
+Epoch 10:                     
+	Train Loss: 2.052611, Train Accuracy: 40.898                     
+	Test Loss: 6.663500, Test Accuracy: 72.920
+Epoch 20:                     
+	Train Loss: 1.807979, Train Accuracy: 86.623                     
+	Test Loss: 6.599645, Test Accuracy: 80.160
+Epoch 30:                     
+	Train Loss: 1.784890, Train Accuracy: 90.098                     
+	Test Loss: 6.578171, Test Accuracy: 82.630
+Epoch 40:                     
+	Train Loss: 1.770454, Train Accuracy: 92.500                     
+	Test Loss: 6.558276, Test Accuracy: 84.860
+Epoch 50:                     
+	Train Loss: 1.763688, Train Accuracy: 93.545                     
+	Test Loss: 6.554876, Test Accuracy: 85.120
+Epoch 60:                     
+	Train Loss: 1.759772, Train Accuracy: 94.145                     
+	Test Loss: 6.551840, Test Accuracy: 85.510
+Epoch 70:                     
+	Train Loss: 1.757000, Train Accuracy: 94.592                     
+	Test Loss: 6.548760, Test Accuracy: 85.960
+Epoch 80:                     
+	Train Loss: 1.755859, Train Accuracy: 94.720                     
+	Test Loss: 6.550054, Test Accuracy: 85.950
+Epoch 90:                     
+	Train Loss: 1.757621, Train Accuracy: 94.305                     
+	Test Loss: 6.551311, Test Accuracy: 85.700
+Epoch 100:                     
+	Train Loss: 1.763828, Train Accuracy: 93.012                     
+	Test Loss: 6.551538, Test Accuracy: 85.780
+Epoch 110:                     
+	Train Loss: 1.771801, Train Accuracy: 91.347                     
+	Test Loss: 6.551039, Test Accuracy: 85.670
+Epoch 120:                     
+	Train Loss: 1.785763, Train Accuracy: 88.498                     
+	Test Loss: 6.551875, Test Accuracy: 85.710
+Epoch 130:                     
+	Train Loss: 1.793169, Train Accuracy: 86.087                     
+	Test Loss: 6.516727, Test Accuracy: 89.260
+Epoch 140:                     
+	Train Loss: 1.800375, Train Accuracy: 84.173                     
+	Test Loss: 6.508080, Test Accuracy: 90.060
+Epoch 150:                     
+	Train Loss: 1.803324, Train Accuracy: 83.403                     
+	Test Loss: 6.500757, Test Accuracy: 90.920
+Epoch 160:                     
+	Train Loss: 1.810241, Train Accuracy: 81.918                     
+	Test Loss: 6.506488, Test Accuracy: 90.380
+Epoch 170:                     
+	Train Loss: 1.816584, Train Accuracy: 80.622                     
+	Test Loss: 6.502327, Test Accuracy: 90.830
+Epoch 180:                     
+	Train Loss: 1.824124, Train Accuracy: 79.067                     
+	Test Loss: 6.504560, Test Accuracy: 90.520
+Epoch 190:                     
+	Train Loss: 1.826890, Train Accuracy: 78.475                     
+	Test Loss: 6.501990, Test Accuracy: 90.780
+Epoch 200:                     
+	Train Loss: 1.828157, Train Accuracy: 78.195                     
+	Test Loss: 6.502881, Test Accuracy: 90.780
+**** Model saved to ../models/LeNet5/avgcl3/r_0.5.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_0.5random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and a smoothing rate of 0.7 ****
+Epoch 10:                     
+	Train Loss: 1.918881, Train Accuracy: 83.367                     
+	Test Loss: 6.646762, Test Accuracy: 74.950
+Epoch 20:                     
+	Train Loss: 1.877822, Train Accuracy: 88.770                     
+	Test Loss: 6.574916, Test Accuracy: 82.860
+Epoch 30:                     
+	Train Loss: 1.857944, Train Accuracy: 93.237                     
+	Test Loss: 6.551367, Test Accuracy: 85.480
+Epoch 40:                     
+	Train Loss: 1.847475, Train Accuracy: 94.795                     
+	Test Loss: 6.528372, Test Accuracy: 87.850
+Epoch 50:                     
+	Train Loss: 1.842140, Train Accuracy: 95.968                     
+	Test Loss: 6.529460, Test Accuracy: 87.830
+Epoch 60:                     
+	Train Loss: 1.839217, Train Accuracy: 96.512                     
+	Test Loss: 6.524801, Test Accuracy: 88.200
+Epoch 70:                     
+	Train Loss: 1.837646, Train Accuracy: 96.853                     
+	Test Loss: 6.527547, Test Accuracy: 88.160
+Epoch 80:                     
+	Train Loss: 1.832869, Train Accuracy: 96.660                     
+	Test Loss: 6.499536, Test Accuracy: 90.870
+Epoch 90:                     
+	Train Loss: 1.829299, Train Accuracy: 97.268                     
+	Test Loss: 6.500547, Test Accuracy: 90.820
+Epoch 100:                     
+	Train Loss: 1.824256, Train Accuracy: 98.437                     
+	Test Loss: 6.486243, Test Accuracy: 92.390
+Epoch 110:                     
+	Train Loss: 1.824266, Train Accuracy: 98.293                     
+	Test Loss: 6.484409, Test Accuracy: 92.570
+Epoch 120:                     
+	Train Loss: 1.825721, Train Accuracy: 97.750                     
+	Test Loss: 6.484272, Test Accuracy: 92.600
+Epoch 130:                     
+	Train Loss: 1.827379, Train Accuracy: 97.182                     
+	Test Loss: 6.483623, Test Accuracy: 92.730
+Epoch 140:                     
+	Train Loss: 1.829272, Train Accuracy: 96.552                     
+	Test Loss: 6.483240, Test Accuracy: 92.790
+Epoch 150:                     
+	Train Loss: 1.831105, Train Accuracy: 95.927                     
+	Test Loss: 6.482585, Test Accuracy: 92.810
+Epoch 160:                     
+	Train Loss: 1.832825, Train Accuracy: 95.348                     
+	Test Loss: 6.483656, Test Accuracy: 92.780
+Epoch 170:                     
+	Train Loss: 1.833985, Train Accuracy: 94.952                     
+	Test Loss: 6.482761, Test Accuracy: 92.830
+Epoch 180:                     
+	Train Loss: 1.835745, Train Accuracy: 94.358                     
+	Test Loss: 6.482624, Test Accuracy: 92.720
+Epoch 190:                     
+	Train Loss: 1.837696, Train Accuracy: 93.712                     
+	Test Loss: 6.482859, Test Accuracy: 92.860
+Epoch 200:                     
+	Train Loss: 1.839442, Train Accuracy: 93.118                     
+	Test Loss: 6.482458, Test Accuracy: 92.820
+**** Model saved to ../models/LeNet5/avgcl3/r_0.7.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_0.7random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=3 and a smoothing rate of 0.9 ****
+Epoch 10:                     
+	Train Loss: 2.050330, Train Accuracy: 75.160                     
+	Test Loss: 6.707852, Test Accuracy: 67.970
+Epoch 20:                     
+	Train Loss: 1.979123, Train Accuracy: 88.045                     
+	Test Loss: 6.605627, Test Accuracy: 78.900
+Epoch 30:                     
+	Train Loss: 1.950317, Train Accuracy: 92.150                     
+	Test Loss: 6.534630, Test Accuracy: 86.860
+Epoch 40:                     
+	Train Loss: 1.931247, Train Accuracy: 95.545                     
+	Test Loss: 6.482471, Test Accuracy: 92.530
+Epoch 50:                     
+	Train Loss: 1.924307, Train Accuracy: 98.402                     
+	Test Loss: 6.478364, Test Accuracy: 92.970
+Epoch 60:                     
+	Train Loss: 1.922403, Train Accuracy: 98.848                     
+	Test Loss: 6.474660, Test Accuracy: 93.320
+Epoch 70:                     
+	Train Loss: 1.921349, Train Accuracy: 99.142                     
+	Test Loss: 6.473565, Test Accuracy: 93.400
+Epoch 80:                     
+	Train Loss: 1.920771, Train Accuracy: 99.278                     
+	Test Loss: 6.472435, Test Accuracy: 93.580
+Epoch 90:                     
+	Train Loss: 1.920462, Train Accuracy: 99.345                     
+	Test Loss: 6.472472, Test Accuracy: 93.630
+Epoch 100:                     
+	Train Loss: 1.920327, Train Accuracy: 99.368                     
+	Test Loss: 6.472459, Test Accuracy: 93.620
+Epoch 110:                     
+	Train Loss: 1.920277, Train Accuracy: 99.348                     
+	Test Loss: 6.472485, Test Accuracy: 93.640
+Epoch 120:                     
+	Train Loss: 1.920098, Train Accuracy: 99.407                     
+	Test Loss: 6.472016, Test Accuracy: 93.680
+Epoch 130:                     
+	Train Loss: 1.920042, Train Accuracy: 99.397                     
+	Test Loss: 6.472263, Test Accuracy: 93.710
+Epoch 140:                     
+	Train Loss: 1.920067, Train Accuracy: 99.358                     
+	Test Loss: 6.471804, Test Accuracy: 93.710
+Epoch 150:                     
+	Train Loss: 1.920069, Train Accuracy: 99.335                     
+	Test Loss: 6.472527, Test Accuracy: 93.700
+Epoch 160:                     
+	Train Loss: 1.920061, Train Accuracy: 99.323                     
+	Test Loss: 6.472139, Test Accuracy: 93.670
+Epoch 170:                     
+	Train Loss: 1.920032, Train Accuracy: 99.290                     
+	Test Loss: 6.471806, Test Accuracy: 93.770
+Epoch 180:                     
+	Train Loss: 1.920102, Train Accuracy: 99.245                     
+	Test Loss: 6.471655, Test Accuracy: 93.800
+Epoch 190:                     
+	Train Loss: 1.920126, Train Accuracy: 99.172                     
+	Test Loss: 6.472595, Test Accuracy: 93.700
+Epoch 200:                     
+	Train Loss: 1.920110, Train Accuracy: 99.148                     
+	Test Loss: 6.471603, Test Accuracy: 93.840
+**** Model saved to ../models/LeNet5/avgcl3/r_0.9.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl3_r_0.9random.png ****
+**** Generating partial labels for KuzushijiMNIST with avgCL 4 ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl4_train.npy ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl4_test.npy ****
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.223429, Train Accuracy: 23.133                     
+	Test Loss: 9.087886, Test Accuracy: 66.790
+Epoch 20:                     
+	Train Loss: 2.153119, Train Accuracy: 30.592                     
+	Test Loss: 8.993579, Test Accuracy: 79.410
+Epoch 30:                     
+	Train Loss: 2.136951, Train Accuracy: 32.303                     
+	Test Loss: 8.957238, Test Accuracy: 83.650
+Epoch 40:                     
+	Train Loss: 2.128266, Train Accuracy: 33.240                     
+	Test Loss: 8.950328, Test Accuracy: 84.860
+Epoch 50:                     
+	Train Loss: 2.122126, Train Accuracy: 33.845                     
+	Test Loss: 8.951507, Test Accuracy: 84.920
+Epoch 60:                     
+	Train Loss: 2.113249, Train Accuracy: 34.793                     
+	Test Loss: 8.927621, Test Accuracy: 87.840
+Epoch 70:                     
+	Train Loss: 2.107958, Train Accuracy: 35.315                     
+	Test Loss: 8.930425, Test Accuracy: 87.450
+Epoch 80:                     
+	Train Loss: 2.102458, Train Accuracy: 35.900                     
+	Test Loss: 8.926676, Test Accuracy: 88.360
+Epoch 90:                     
+	Train Loss: 2.099777, Train Accuracy: 36.140                     
+	Test Loss: 8.935584, Test Accuracy: 87.270
+Epoch 100:                     
+	Train Loss: 2.097940, Train Accuracy: 36.300                     
+	Test Loss: 8.932761, Test Accuracy: 87.630
+Epoch 110:                     
+	Train Loss: 2.095526, Train Accuracy: 36.553                     
+	Test Loss: 8.941393, Test Accuracy: 86.780
+Epoch 120:                     
+	Train Loss: 2.095754, Train Accuracy: 36.500                     
+	Test Loss: 8.936586, Test Accuracy: 87.430
+Epoch 130:                     
+	Train Loss: 2.098053, Train Accuracy: 36.277                     
+	Test Loss: 8.939984, Test Accuracy: 87.110
+Epoch 140:                     
+	Train Loss: 2.101051, Train Accuracy: 35.965                     
+	Test Loss: 8.945700, Test Accuracy: 86.550
+Epoch 150:                     
+	Train Loss: 2.103546, Train Accuracy: 35.737                     
+	Test Loss: 8.944814, Test Accuracy: 86.470
+Epoch 160:                     
+	Train Loss: 2.105122, Train Accuracy: 35.572                     
+	Test Loss: 8.942887, Test Accuracy: 86.840
+Epoch 170:                     
+	Train Loss: 2.106339, Train Accuracy: 35.440                     
+	Test Loss: 8.946273, Test Accuracy: 86.490
+Epoch 180:                     
+	Train Loss: 2.111429, Train Accuracy: 34.927                     
+	Test Loss: 8.946906, Test Accuracy: 86.260
+Epoch 190:                     
+	Train Loss: 2.107815, Train Accuracy: 35.305                     
+	Test Loss: 8.961967, Test Accuracy: 84.550
+Epoch 200:                     
+	Train Loss: 2.110061, Train Accuracy: 35.047                     
+	Test Loss: 8.959608, Test Accuracy: 84.930
+**** Model saved to ../models/LeNet5/avgcl4/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_noLSrandom.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.182025, Train Accuracy: 27.512                     
+	Test Loss: 9.055958, Test Accuracy: 72.360
+Epoch 20:                     
+	Train Loss: 2.152578, Train Accuracy: 30.665                     
+	Test Loss: 8.985624, Test Accuracy: 80.360
+Epoch 30:                     
+	Train Loss: 2.091768, Train Accuracy: 37.418                     
+	Test Loss: 8.919247, Test Accuracy: 88.090
+Epoch 40:                     
+	Train Loss: 1.745154, Train Accuracy: 75.915                     
+	Test Loss: 8.907388, Test Accuracy: 89.860
+Epoch 50:                     
+	Train Loss: 1.633684, Train Accuracy: 88.305                     
+	Test Loss: 8.902313, Test Accuracy: 90.880
+Epoch 60:                     
+	Train Loss: 1.588325, Train Accuracy: 93.328                     
+	Test Loss: 8.902476, Test Accuracy: 90.980
+Epoch 70:                     
+	Train Loss: 1.564587, Train Accuracy: 95.923                     
+	Test Loss: 8.898470, Test Accuracy: 91.460
+Epoch 80:                     
+	Train Loss: 1.570006, Train Accuracy: 95.308                     
+	Test Loss: 8.898098, Test Accuracy: 91.660
+Epoch 90:                     
+	Train Loss: 1.609537, Train Accuracy: 90.907                     
+	Test Loss: 8.900692, Test Accuracy: 91.440
+Epoch 100:                     
+	Train Loss: 1.664696, Train Accuracy: 84.768                     
+	Test Loss: 8.899241, Test Accuracy: 91.670
+Epoch 110:                     
+	Train Loss: 1.719801, Train Accuracy: 78.628                     
+	Test Loss: 8.901076, Test Accuracy: 91.490
+Epoch 120:                     
+	Train Loss: 1.782702, Train Accuracy: 71.633                     
+	Test Loss: 8.899272, Test Accuracy: 91.790
+Epoch 130:                     
+	Train Loss: 1.826993, Train Accuracy: 66.710                     
+	Test Loss: 8.901247, Test Accuracy: 91.560
+Epoch 140:                     
+	Train Loss: 1.865288, Train Accuracy: 62.445                     
+	Test Loss: 8.904268, Test Accuracy: 91.220
+Epoch 150:                     
+	Train Loss: 1.889908, Train Accuracy: 59.703                     
+	Test Loss: 8.898639, Test Accuracy: 91.850
+Epoch 160:                     
+	Train Loss: 1.906896, Train Accuracy: 57.812                     
+	Test Loss: 8.897397, Test Accuracy: 91.890
+Epoch 170:                     
+	Train Loss: 1.925893, Train Accuracy: 55.703                     
+	Test Loss: 8.898807, Test Accuracy: 91.810
+Epoch 180:                     
+	Train Loss: 1.929861, Train Accuracy: 55.247                     
+	Test Loss: 8.901343, Test Accuracy: 91.580
+Epoch 190:                     
+	Train Loss: 1.931483, Train Accuracy: 55.067                     
+	Test Loss: 8.900441, Test Accuracy: 91.700
+Epoch 200:                     
+	Train Loss: 1.932839, Train Accuracy: 54.918                     
+	Test Loss: 8.900354, Test Accuracy: 91.670
+**** Model saved to ../models/LeNet5/avgcl4/r_0.1.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_0.1random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and a smoothing rate of 0.3 ****
+Epoch 10:                     
+	Train Loss: 2.179386, Train Accuracy: 27.847                     
+	Test Loss: 9.043558, Test Accuracy: 73.720
+Epoch 20:                     
+	Train Loss: 2.066784, Train Accuracy: 42.985                     
+	Test Loss: 8.989643, Test Accuracy: 80.050
+Epoch 30:                     
+	Train Loss: 1.772003, Train Accuracy: 84.970                     
+	Test Loss: 8.966808, Test Accuracy: 83.520
+Epoch 40:                     
+	Train Loss: 1.731875, Train Accuracy: 90.540                     
+	Test Loss: 8.963681, Test Accuracy: 84.350
+Epoch 50:                     
+	Train Loss: 1.718233, Train Accuracy: 92.412                     
+	Test Loss: 8.958291, Test Accuracy: 85.200
+Epoch 60:                     
+	Train Loss: 1.710347, Train Accuracy: 93.448                     
+	Test Loss: 8.950879, Test Accuracy: 86.040
+Epoch 70:                     
+	Train Loss: 1.710040, Train Accuracy: 93.455                     
+	Test Loss: 8.954625, Test Accuracy: 85.950
+Epoch 80:                     
+	Train Loss: 1.723567, Train Accuracy: 91.502                     
+	Test Loss: 8.954590, Test Accuracy: 85.910
+Epoch 90:                     
+	Train Loss: 1.744131, Train Accuracy: 88.520                     
+	Test Loss: 8.951452, Test Accuracy: 86.110
+Epoch 100:                     
+	Train Loss: 1.787155, Train Accuracy: 82.315                     
+	Test Loss: 8.955063, Test Accuracy: 85.910
+Epoch 110:                     
+	Train Loss: 1.802308, Train Accuracy: 80.783                     
+	Test Loss: 8.968674, Test Accuracy: 84.640
+Epoch 120:                     
+	Train Loss: 1.831334, Train Accuracy: 76.618                     
+	Test Loss: 8.963420, Test Accuracy: 85.060
+Epoch 130:                     
+	Train Loss: 1.863309, Train Accuracy: 72.030                     
+	Test Loss: 8.964348, Test Accuracy: 84.960
+Epoch 140:                     
+	Train Loss: 1.903004, Train Accuracy: 66.340                     
+	Test Loss: 8.967778, Test Accuracy: 84.780
+Epoch 150:                     
+	Train Loss: 1.928579, Train Accuracy: 63.197                     
+	Test Loss: 8.986947, Test Accuracy: 82.840
+Epoch 160:                     
+	Train Loss: 1.952514, Train Accuracy: 60.137                     
+	Test Loss: 8.997196, Test Accuracy: 81.880
+Epoch 170:                     
+	Train Loss: 1.896097, Train Accuracy: 69.877                     
+	Test Loss: 9.068920, Test Accuracy: 74.550
+Epoch 180:                     
+	Train Loss: 1.890614, Train Accuracy: 70.833                     
+	Test Loss: 9.074810, Test Accuracy: 73.970
+Epoch 190:                     
+	Train Loss: 1.865376, Train Accuracy: 75.340                     
+	Test Loss: 9.087489, Test Accuracy: 72.770
+Epoch 200:                     
+	Train Loss: 1.866928, Train Accuracy: 75.313                     
+	Test Loss: 9.086965, Test Accuracy: 72.880
+**** Model saved to ../models/LeNet5/avgcl4/r_0.3.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_0.3random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and a smoothing rate of 0.5 ****
+Epoch 10:                     
+	Train Loss: 2.189252, Train Accuracy: 26.668                     
+	Test Loss: 9.057323, Test Accuracy: 71.860
+Epoch 20:                     
+	Train Loss: 1.987169, Train Accuracy: 64.153                     
+	Test Loss: 8.993715, Test Accuracy: 80.400
+Epoch 30:                     
+	Train Loss: 1.857096, Train Accuracy: 89.275                     
+	Test Loss: 8.976308, Test Accuracy: 82.740
+Epoch 40:                     
+	Train Loss: 1.841570, Train Accuracy: 91.830                     
+	Test Loss: 8.965083, Test Accuracy: 84.280
+Epoch 50:                     
+	Train Loss: 1.833559, Train Accuracy: 93.195                     
+	Test Loss: 8.959142, Test Accuracy: 85.070
+Epoch 60:                     
+	Train Loss: 1.826806, Train Accuracy: 94.323                     
+	Test Loss: 8.955143, Test Accuracy: 85.610
+Epoch 70:                     
+	Train Loss: 1.822122, Train Accuracy: 95.130                     
+	Test Loss: 8.956641, Test Accuracy: 85.650
+Epoch 80:                     
+	Train Loss: 1.822618, Train Accuracy: 94.967                     
+	Test Loss: 8.954678, Test Accuracy: 85.940
+Epoch 90:                     
+	Train Loss: 1.832119, Train Accuracy: 92.985                     
+	Test Loss: 8.956693, Test Accuracy: 85.870
+Epoch 100:                     
+	Train Loss: 1.844313, Train Accuracy: 90.480                     
+	Test Loss: 8.955780, Test Accuracy: 85.830
+Epoch 110:                     
+	Train Loss: 1.860215, Train Accuracy: 87.258                     
+	Test Loss: 8.954955, Test Accuracy: 86.060
+Epoch 120:                     
+	Train Loss: 1.878539, Train Accuracy: 83.555                     
+	Test Loss: 8.957301, Test Accuracy: 85.830
+Epoch 130:                     
+	Train Loss: 1.902922, Train Accuracy: 78.623                     
+	Test Loss: 8.958339, Test Accuracy: 85.800
+Epoch 140:                     
+	Train Loss: 1.923071, Train Accuracy: 74.577                     
+	Test Loss: 8.958849, Test Accuracy: 85.680
+Epoch 150:                     
+	Train Loss: 1.937296, Train Accuracy: 71.710                     
+	Test Loss: 8.956257, Test Accuracy: 86.060
+Epoch 160:                     
+	Train Loss: 1.951638, Train Accuracy: 68.835                     
+	Test Loss: 8.957969, Test Accuracy: 85.890
+Epoch 170:                     
+	Train Loss: 1.964862, Train Accuracy: 66.172                     
+	Test Loss: 8.956865, Test Accuracy: 86.080
+Epoch 180:                     
+	Train Loss: 1.974213, Train Accuracy: 64.282                     
+	Test Loss: 8.956842, Test Accuracy: 85.950
+Epoch 190:                     
+	Train Loss: 1.982322, Train Accuracy: 62.647                     
+	Test Loss: 8.957192, Test Accuracy: 86.030
+Epoch 200:                     
+	Train Loss: 1.986783, Train Accuracy: 61.773                     
+	Test Loss: 8.957780, Test Accuracy: 85.930
+**** Model saved to ../models/LeNet5/avgcl4/r_0.5.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_0.5random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and a smoothing rate of 0.7 ****
+Epoch 10:                     
+	Train Loss: 2.194413, Train Accuracy: 26.213                     
+	Test Loss: 9.076549, Test Accuracy: 69.020
+Epoch 20:                     
+	Train Loss: 1.988760, Train Accuracy: 85.922                     
+	Test Loss: 8.996050, Test Accuracy: 80.100
+Epoch 30:                     
+	Train Loss: 1.969067, Train Accuracy: 90.063                     
+	Test Loss: 8.966511, Test Accuracy: 83.410
+Epoch 40:                     
+	Train Loss: 1.957069, Train Accuracy: 92.218                     
+	Test Loss: 8.950228, Test Accuracy: 85.620
+Epoch 50:                     
+	Train Loss: 1.948543, Train Accuracy: 94.288                     
+	Test Loss: 8.947138, Test Accuracy: 86.130
+Epoch 60:                     
+	Train Loss: 1.943378, Train Accuracy: 95.593                     
+	Test Loss: 8.938118, Test Accuracy: 87.170
+Epoch 70:                     
+	Train Loss: 1.940464, Train Accuracy: 96.258                     
+	Test Loss: 8.934275, Test Accuracy: 87.630
+Epoch 80:                     
+	Train Loss: 1.938603, Train Accuracy: 96.693                     
+	Test Loss: 8.936649, Test Accuracy: 87.530
+Epoch 90:                     
+	Train Loss: 1.937604, Train Accuracy: 96.935                     
+	Test Loss: 8.935742, Test Accuracy: 87.700
+Epoch 100:                     
+	Train Loss: 1.938010, Train Accuracy: 96.687                     
+	Test Loss: 8.935639, Test Accuracy: 87.730
+Epoch 110:                     
+	Train Loss: 1.939715, Train Accuracy: 96.035                     
+	Test Loss: 8.937639, Test Accuracy: 87.510
+Epoch 120:                     
+	Train Loss: 1.942738, Train Accuracy: 94.957                     
+	Test Loss: 8.935554, Test Accuracy: 87.820
+Epoch 130:                     
+	Train Loss: 1.946814, Train Accuracy: 93.548                     
+	Test Loss: 8.936553, Test Accuracy: 87.740
+Epoch 140:                     
+	Train Loss: 1.952281, Train Accuracy: 91.685                     
+	Test Loss: 8.938164, Test Accuracy: 87.610
+Epoch 150:                     
+	Train Loss: 1.957426, Train Accuracy: 89.982                     
+	Test Loss: 8.938860, Test Accuracy: 87.620
+Epoch 160:                     
+	Train Loss: 1.963039, Train Accuracy: 88.050                     
+	Test Loss: 8.938981, Test Accuracy: 87.440
+Epoch 170:                     
+	Train Loss: 1.968928, Train Accuracy: 86.058                     
+	Test Loss: 8.937413, Test Accuracy: 87.750
+Epoch 180:                     
+	Train Loss: 1.972902, Train Accuracy: 84.673                     
+	Test Loss: 8.939877, Test Accuracy: 87.350
+Epoch 190:                     
+	Train Loss: 1.976649, Train Accuracy: 83.417                     
+	Test Loss: 8.939005, Test Accuracy: 87.570
+Epoch 200:                     
+	Train Loss: 1.981133, Train Accuracy: 81.898                     
+	Test Loss: 8.938008, Test Accuracy: 87.700
+**** Model saved to ../models/LeNet5/avgcl4/r_0.7.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_0.7random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=4 and a smoothing rate of 0.9 ****
+Epoch 10:                     
+	Train Loss: 2.119459, Train Accuracy: 80.795                     
+	Test Loss: 9.020505, Test Accuracy: 76.500
+Epoch 20:                     
+	Train Loss: 2.091441, Train Accuracy: 88.995                     
+	Test Loss: 8.978962, Test Accuracy: 81.550
+Epoch 30:                     
+	Train Loss: 2.078962, Train Accuracy: 91.600                     
+	Test Loss: 8.955561, Test Accuracy: 84.770
+Epoch 40:                     
+	Train Loss: 2.072762, Train Accuracy: 94.172                     
+	Test Loss: 8.934370, Test Accuracy: 87.120
+Epoch 50:                     
+	Train Loss: 2.068789, Train Accuracy: 95.035                     
+	Test Loss: 8.926320, Test Accuracy: 87.940
+Epoch 60:                     
+	Train Loss: 2.065878, Train Accuracy: 96.110                     
+	Test Loss: 8.923393, Test Accuracy: 88.540
+Epoch 70:                     
+	Train Loss: 2.064259, Train Accuracy: 96.637                     
+	Test Loss: 8.918165, Test Accuracy: 89.200
+Epoch 80:                     
+	Train Loss: 2.063258, Train Accuracy: 97.018                     
+	Test Loss: 8.918842, Test Accuracy: 89.130
+Epoch 90:                     
+	Train Loss: 2.062496, Train Accuracy: 97.298                     
+	Test Loss: 8.918406, Test Accuracy: 89.240
+Epoch 100:                     
+	Train Loss: 2.061922, Train Accuracy: 97.538                     
+	Test Loss: 8.917083, Test Accuracy: 89.500
+Epoch 110:                     
+	Train Loss: 2.057947, Train Accuracy: 96.835                     
+	Test Loss: 8.889172, Test Accuracy: 92.390
+Epoch 120:                     
+	Train Loss: 2.055299, Train Accuracy: 98.940                     
+	Test Loss: 8.886341, Test Accuracy: 92.710
+Epoch 130:                     
+	Train Loss: 2.055084, Train Accuracy: 99.057                     
+	Test Loss: 8.886379, Test Accuracy: 92.700
+Epoch 140:                     
+	Train Loss: 2.054887, Train Accuracy: 99.080                     
+	Test Loss: 8.885879, Test Accuracy: 92.790
+Epoch 150:                     
+	Train Loss: 2.054775, Train Accuracy: 99.070                     
+	Test Loss: 8.884172, Test Accuracy: 92.950
+Epoch 160:                     
+	Train Loss: 2.054764, Train Accuracy: 99.038                     
+	Test Loss: 8.884895, Test Accuracy: 92.940
+Epoch 170:                     
+	Train Loss: 2.054806, Train Accuracy: 98.972                     
+	Test Loss: 8.884470, Test Accuracy: 93.080
+Epoch 180:                     
+	Train Loss: 2.054876, Train Accuracy: 98.862                     
+	Test Loss: 8.884777, Test Accuracy: 92.930
+Epoch 190:                     
+	Train Loss: 2.054913, Train Accuracy: 98.795                     
+	Test Loss: 8.883970, Test Accuracy: 93.110
+Epoch 200:                     
+	Train Loss: 2.055034, Train Accuracy: 98.667                     
+	Test Loss: 8.884088, Test Accuracy: 93.150
+**** Model saved to ../models/LeNet5/avgcl4/r_0.9.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl4_r_0.9random.png ****
+**** Generating partial labels for KuzushijiMNIST with avgCL 5 ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl5_train.npy ****
+**** Partial labels saved to ../datasets/pl_KuzushijiMNIST_avgcl5_test.npy ****
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.256160, Train Accuracy: 19.252                     
+	Test Loss: 11.421659, Test Accuracy: 73.760
+Epoch 20:                     
+	Train Loss: 2.232236, Train Accuracy: 22.485                     
+	Test Loss: 11.387107, Test Accuracy: 81.180
+Epoch 30:                     
+	Train Loss: 2.220086, Train Accuracy: 23.827                     
+	Test Loss: 11.366986, Test Accuracy: 85.200
+Epoch 40:                     
+	Train Loss: 2.213415, Train Accuracy: 24.557                     
+	Test Loss: 11.363730, Test Accuracy: 86.030
+Epoch 50:                     
+	Train Loss: 2.205383, Train Accuracy: 25.435                     
+	Test Loss: 11.367494, Test Accuracy: 86.290
+Epoch 60:                     
+	Train Loss: 2.198172, Train Accuracy: 26.168                     
+	Test Loss: 11.373343, Test Accuracy: 86.180
+Epoch 70:                     
+	Train Loss: 2.189275, Train Accuracy: 27.112                     
+	Test Loss: 11.382512, Test Accuracy: 85.670
+Epoch 80:                     
+	Train Loss: 2.182775, Train Accuracy: 27.793                     
+	Test Loss: 11.397289, Test Accuracy: 84.150
+Epoch 90:                     
+	Train Loss: 2.175577, Train Accuracy: 28.507                     
+	Test Loss: 11.409746, Test Accuracy: 83.220
+Epoch 100:                     
+	Train Loss: 2.169342, Train Accuracy: 29.115                     
+	Test Loss: 11.407360, Test Accuracy: 83.590
+Epoch 110:                     
+	Train Loss: 2.166505, Train Accuracy: 29.398                     
+	Test Loss: 11.405871, Test Accuracy: 84.030
+Epoch 120:                     
+	Train Loss: 2.167074, Train Accuracy: 29.322                     
+	Test Loss: 11.417828, Test Accuracy: 82.730
+Epoch 130:                     
+	Train Loss: 2.166468, Train Accuracy: 29.405                     
+	Test Loss: 11.409287, Test Accuracy: 83.940
+Epoch 140:                     
+	Train Loss: 2.165334, Train Accuracy: 29.513                     
+	Test Loss: 11.421833, Test Accuracy: 82.780
+Epoch 150:                     
+	Train Loss: 2.135878, Train Accuracy: 32.453                     
+	Test Loss: 11.430113, Test Accuracy: 81.990
+Epoch 160:                     
+	Train Loss: 2.112099, Train Accuracy: 34.802                     
+	Test Loss: 11.450297, Test Accuracy: 79.850
+Epoch 170:                     
+	Train Loss: 2.099016, Train Accuracy: 36.105                     
+	Test Loss: 11.452498, Test Accuracy: 79.700
+Epoch 180:                     
+	Train Loss: 2.087862, Train Accuracy: 37.203                     
+	Test Loss: 11.451475, Test Accuracy: 79.920
+Epoch 190:                     
+	Train Loss: 2.080881, Train Accuracy: 37.985                     
+	Test Loss: 11.458122, Test Accuracy: 79.170
+Epoch 200:                     
+	Train Loss: 2.076058, Train Accuracy: 38.418                     
+	Test Loss: 11.460088, Test Accuracy: 79.130
+**** Model saved to ../models/LeNet5/avgcl5/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_noLSrandom.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.302154, Train Accuracy: 10.347                     
+	Test Loss: 11.478141, Test Accuracy: 49.410
+Epoch 20:                     
+	Train Loss: 2.241821, Train Accuracy: 21.228                     
+	Test Loss: 11.394767, Test Accuracy: 79.620
+Epoch 30:                     
+	Train Loss: 2.227871, Train Accuracy: 22.980                     
+	Test Loss: 11.375487, Test Accuracy: 82.940
+Epoch 40:                     
+	Train Loss: 2.215683, Train Accuracy: 24.390                     
+	Test Loss: 11.373622, Test Accuracy: 83.900
+Epoch 50:                     
+	Train Loss: 2.040015, Train Accuracy: 44.088                     
+	Test Loss: 11.369228, Test Accuracy: 86.540
+Epoch 60:                     
+	Train Loss: 1.775074, Train Accuracy: 73.608                     
+	Test Loss: 11.370612, Test Accuracy: 87.720
+Epoch 70:                     
+	Train Loss: 1.681646, Train Accuracy: 84.017                     
+	Test Loss: 11.373895, Test Accuracy: 87.940
+Epoch 80:                     
+	Train Loss: 1.625961, Train Accuracy: 90.147                     
+	Test Loss: 11.375936, Test Accuracy: 88.040
+Epoch 90:                     
+	Train Loss: 1.605786, Train Accuracy: 92.405                     
+	Test Loss: 11.375105, Test Accuracy: 88.440
+Epoch 100:                     
+	Train Loss: 1.658267, Train Accuracy: 86.520                     
+	Test Loss: 11.373178, Test Accuracy: 88.810
+Epoch 110:                     
+	Train Loss: 1.751771, Train Accuracy: 76.138                     
+	Test Loss: 11.371915, Test Accuracy: 88.870
+Epoch 120:                     
+	Train Loss: 1.847562, Train Accuracy: 65.567                     
+	Test Loss: 11.384604, Test Accuracy: 87.650
+Epoch 130:                     
+	Train Loss: 1.837673, Train Accuracy: 66.803                     
+	Test Loss: 11.403255, Test Accuracy: 85.920
+Epoch 140:                     
+	Train Loss: 1.870846, Train Accuracy: 63.123                     
+	Test Loss: 11.395284, Test Accuracy: 86.730
+Epoch 150:                     
+	Train Loss: 1.912698, Train Accuracy: 58.478                     
+	Test Loss: 11.399999, Test Accuracy: 86.260
+Epoch 160:                     
+	Train Loss: 1.697123, Train Accuracy: 83.200                     
+	Test Loss: 11.558222, Test Accuracy: 70.280
+Epoch 170:                     
+	Train Loss: 1.629327, Train Accuracy: 90.913                     
+	Test Loss: 11.616400, Test Accuracy: 64.660
+Epoch 180:                     
+	Train Loss: 1.617865, Train Accuracy: 92.283                     
+	Test Loss: 11.672557, Test Accuracy: 59.340
+Epoch 190:                     
+	Train Loss: 1.594215, Train Accuracy: 95.052                     
+	Test Loss: 11.710459, Test Accuracy: 55.690
+Epoch 200:                     
+	Train Loss: 1.575163, Train Accuracy: 97.263                     
+	Test Loss: 11.729737, Test Accuracy: 53.800
+**** Model saved to ../models/LeNet5/avgcl5/r_0.1.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_0.1random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and a smoothing rate of 0.3 ****
+Epoch 10:                     
+	Train Loss: 2.302278, Train Accuracy: 11.258                     
+	Test Loss: 11.478150, Test Accuracy: 53.570
+Epoch 20:                     
+	Train Loss: 2.243301, Train Accuracy: 21.107                     
+	Test Loss: 11.403641, Test Accuracy: 78.650
+Epoch 30:                     
+	Train Loss: 2.219573, Train Accuracy: 24.327                     
+	Test Loss: 11.381957, Test Accuracy: 81.890
+Epoch 40:                     
+	Train Loss: 1.918349, Train Accuracy: 67.530                     
+	Test Loss: 11.384527, Test Accuracy: 84.860
+Epoch 50:                     
+	Train Loss: 1.795043, Train Accuracy: 85.125                     
+	Test Loss: 11.393463, Test Accuracy: 85.280
+Epoch 60:                     
+	Train Loss: 1.752344, Train Accuracy: 91.145                     
+	Test Loss: 11.387492, Test Accuracy: 86.540
+Epoch 70:                     
+	Train Loss: 1.734618, Train Accuracy: 93.642                     
+	Test Loss: 11.383122, Test Accuracy: 87.480
+Epoch 80:                     
+	Train Loss: 1.732767, Train Accuracy: 93.920                     
+	Test Loss: 11.384972, Test Accuracy: 87.270
+Epoch 90:                     
+	Train Loss: 1.747765, Train Accuracy: 91.733                     
+	Test Loss: 11.384188, Test Accuracy: 87.510
+Epoch 100:                     
+	Train Loss: 1.787417, Train Accuracy: 86.023                     
+	Test Loss: 11.386865, Test Accuracy: 87.340
+Epoch 110:                     
+	Train Loss: 1.844847, Train Accuracy: 77.812                     
+	Test Loss: 11.386887, Test Accuracy: 87.420
+Epoch 120:                     
+	Train Loss: 1.894199, Train Accuracy: 70.705                     
+	Test Loss: 11.389623, Test Accuracy: 87.300
+Epoch 130:                     
+	Train Loss: 1.916978, Train Accuracy: 67.917                     
+	Test Loss: 11.403594, Test Accuracy: 85.740
+Epoch 140:                     
+	Train Loss: 1.949001, Train Accuracy: 63.335                     
+	Test Loss: 11.397540, Test Accuracy: 86.480
+Epoch 150:                     
+	Train Loss: 1.879541, Train Accuracy: 74.855                     
+	Test Loss: 11.460425, Test Accuracy: 80.450
+Epoch 160:                     
+	Train Loss: 1.866192, Train Accuracy: 76.953                     
+	Test Loss: 11.471455, Test Accuracy: 79.170
+Epoch 170:                     
+	Train Loss: 1.850838, Train Accuracy: 79.417                     
+	Test Loss: 11.478762, Test Accuracy: 78.490
+Epoch 180:                     
+	Train Loss: 1.849079, Train Accuracy: 79.697                     
+	Test Loss: 11.478464, Test Accuracy: 78.550
+Epoch 190:                     
+	Train Loss: 1.851228, Train Accuracy: 79.432                     
+	Test Loss: 11.480043, Test Accuracy: 78.320
+Epoch 200:                     
+	Train Loss: 1.857711, Train Accuracy: 78.662                     
+	Test Loss: 11.500153, Test Accuracy: 76.300
+**** Model saved to ../models/LeNet5/avgcl5/r_0.3.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_0.3random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and a smoothing rate of 0.5 ****
+Epoch 10:                     
+	Train Loss: 2.299533, Train Accuracy: 13.190                     
+	Test Loss: 11.465804, Test Accuracy: 56.770
+Epoch 20:                     
+	Train Loss: 2.229861, Train Accuracy: 23.460                     
+	Test Loss: 11.393003, Test Accuracy: 80.550
+Epoch 30:                     
+	Train Loss: 1.953050, Train Accuracy: 78.918                     
+	Test Loss: 11.404143, Test Accuracy: 82.970
+Epoch 40:                     
+	Train Loss: 1.901151, Train Accuracy: 88.875                     
+	Test Loss: 11.399501, Test Accuracy: 84.720
+Epoch 50:                     
+	Train Loss: 1.886188, Train Accuracy: 91.582                     
+	Test Loss: 11.397689, Test Accuracy: 85.420
+Epoch 60:                     
+	Train Loss: 1.878188, Train Accuracy: 93.025                     
+	Test Loss: 11.398795, Test Accuracy: 85.450
+Epoch 70:                     
+	Train Loss: 1.873750, Train Accuracy: 93.872                     
+	Test Loss: 11.395527, Test Accuracy: 86.110
+Epoch 80:                     
+	Train Loss: 1.868705, Train Accuracy: 94.798                     
+	Test Loss: 11.396639, Test Accuracy: 86.060
+Epoch 90:                     
+	Train Loss: 1.871504, Train Accuracy: 94.135                     
+	Test Loss: 11.395788, Test Accuracy: 86.190
+Epoch 100:                     
+	Train Loss: 1.883551, Train Accuracy: 91.727                     
+	Test Loss: 11.397353, Test Accuracy: 86.190
+Epoch 110:                     
+	Train Loss: 1.908371, Train Accuracy: 86.705                     
+	Test Loss: 11.397959, Test Accuracy: 86.210
+Epoch 120:                     
+	Train Loss: 1.943077, Train Accuracy: 79.715                     
+	Test Loss: 11.396906, Test Accuracy: 86.360
+Epoch 130:                     
+	Train Loss: 1.976366, Train Accuracy: 73.042                     
+	Test Loss: 11.397658, Test Accuracy: 86.390
+Epoch 140:                     
+	Train Loss: 2.008000, Train Accuracy: 66.700                     
+	Test Loss: 11.399533, Test Accuracy: 86.290
+Epoch 150:                     
+	Train Loss: 2.043063, Train Accuracy: 59.660                     
+	Test Loss: 11.401699, Test Accuracy: 86.080
+Epoch 160:                     
+	Train Loss: 2.063932, Train Accuracy: 55.478                     
+	Test Loss: 11.398572, Test Accuracy: 86.350
+Epoch 170:                     
+	Train Loss: 2.086874, Train Accuracy: 50.858                     
+	Test Loss: 11.402330, Test Accuracy: 86.050
+Epoch 180:                     
+	Train Loss: 2.102115, Train Accuracy: 47.803                     
+	Test Loss: 11.399830, Test Accuracy: 86.270
+Epoch 190:                     
+	Train Loss: 2.113829, Train Accuracy: 45.463                     
+	Test Loss: 11.401812, Test Accuracy: 86.150
+Epoch 200:                     
+	Train Loss: 2.097939, Train Accuracy: 50.840                     
+	Test Loss: 11.431898, Test Accuracy: 83.100
+**** Model saved to ../models/LeNet5/avgcl5/r_0.5.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_0.5random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and a smoothing rate of 0.7 ****
+Epoch 10:                     
+	Train Loss: 2.302174, Train Accuracy: 10.478                     
+	Test Loss: 11.478177, Test Accuracy: 49.530
+Epoch 20:                     
+	Train Loss: 2.229355, Train Accuracy: 25.800                     
+	Test Loss: 11.404686, Test Accuracy: 78.790
+Epoch 30:                     
+	Train Loss: 2.046067, Train Accuracy: 85.488                     
+	Test Loss: 11.408594, Test Accuracy: 82.380
+Epoch 40:                     
+	Train Loss: 2.029653, Train Accuracy: 89.952                     
+	Test Loss: 11.401457, Test Accuracy: 83.910
+Epoch 50:                     
+	Train Loss: 2.022343, Train Accuracy: 91.875                     
+	Test Loss: 11.398213, Test Accuracy: 84.900
+Epoch 60:                     
+	Train Loss: 2.017844, Train Accuracy: 93.130                     
+	Test Loss: 11.398336, Test Accuracy: 84.960
+Epoch 70:                     
+	Train Loss: 2.015088, Train Accuracy: 93.828                     
+	Test Loss: 11.400200, Test Accuracy: 85.170
+Epoch 80:                     
+	Train Loss: 2.012429, Train Accuracy: 94.540                     
+	Test Loss: 11.395946, Test Accuracy: 85.660
+Epoch 90:                     
+	Train Loss: 2.010280, Train Accuracy: 95.087                     
+	Test Loss: 11.398843, Test Accuracy: 85.650
+Epoch 100:                     
+	Train Loss: 2.008856, Train Accuracy: 95.453                     
+	Test Loss: 11.399084, Test Accuracy: 85.680
+Epoch 110:                     
+	Train Loss: 2.007962, Train Accuracy: 95.673                     
+	Test Loss: 11.400418, Test Accuracy: 85.750
+Epoch 120:                     
+	Train Loss: 2.007772, Train Accuracy: 95.642                     
+	Test Loss: 11.400798, Test Accuracy: 85.810
+Epoch 130:                     
+	Train Loss: 2.009721, Train Accuracy: 94.937                     
+	Test Loss: 11.400128, Test Accuracy: 85.990
+Epoch 140:                     
+	Train Loss: 2.016432, Train Accuracy: 92.638                     
+	Test Loss: 11.403552, Test Accuracy: 85.750
+Epoch 150:                     
+	Train Loss: 2.026131, Train Accuracy: 89.363                     
+	Test Loss: 11.401688, Test Accuracy: 85.910
+Epoch 160:                     
+	Train Loss: 2.035924, Train Accuracy: 86.075                     
+	Test Loss: 11.402034, Test Accuracy: 85.880
+Epoch 170:                     
+	Train Loss: 2.047041, Train Accuracy: 82.293                     
+	Test Loss: 11.401536, Test Accuracy: 85.950
+Epoch 180:                     
+	Train Loss: 2.057739, Train Accuracy: 78.700                     
+	Test Loss: 11.404328, Test Accuracy: 85.750
+Epoch 190:                     
+	Train Loss: 2.069511, Train Accuracy: 74.802                     
+	Test Loss: 11.403418, Test Accuracy: 85.770
+Epoch 200:                     
+	Train Loss: 2.076063, Train Accuracy: 72.527                     
+	Test Loss: 11.404206, Test Accuracy: 85.840
+**** Model saved to ../models/LeNet5/avgcl5/r_0.7.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_0.7random.png ****
+
+**** Training LeNet5 on partial labelled KuzushijiMNIST with Avg.#CL=5 and a smoothing rate of 0.9 ****
+Epoch 10:                     
+	Train Loss: 2.302268, Train Accuracy: 11.372                     
+	Test Loss: 11.478221, Test Accuracy: 51.560
+Epoch 20:                     
+	Train Loss: 2.188412, Train Accuracy: 78.675                     
+	Test Loss: 11.419018, Test Accuracy: 78.720
+Epoch 30:                     
+	Train Loss: 2.170669, Train Accuracy: 86.863                     
+	Test Loss: 11.397798, Test Accuracy: 82.530
+Epoch 40:                     
+	Train Loss: 2.162521, Train Accuracy: 90.302                     
+	Test Loss: 11.385191, Test Accuracy: 84.320
+Epoch 50:                     
+	Train Loss: 2.158200, Train Accuracy: 92.087                     
+	Test Loss: 11.376645, Test Accuracy: 85.850
+Epoch 60:                     
+	Train Loss: 2.155237, Train Accuracy: 93.387                     
+	Test Loss: 11.368301, Test Accuracy: 86.960
+Epoch 70:                     
+	Train Loss: 2.153138, Train Accuracy: 94.197                     
+	Test Loss: 11.360815, Test Accuracy: 88.030
+Epoch 80:                     
+	Train Loss: 2.151385, Train Accuracy: 95.015                     
+	Test Loss: 11.360024, Test Accuracy: 88.510
+Epoch 90:                     
+	Train Loss: 2.150364, Train Accuracy: 95.345                     
+	Test Loss: 11.359039, Test Accuracy: 88.730
+Epoch 100:                     
+	Train Loss: 2.148812, Train Accuracy: 95.828                     
+	Test Loss: 11.358135, Test Accuracy: 88.990
+Epoch 110:                     
+	Train Loss: 2.147770, Train Accuracy: 96.318                     
+	Test Loss: 11.359378, Test Accuracy: 88.950
+Epoch 120:                     
+	Train Loss: 2.146962, Train Accuracy: 96.650                     
+	Test Loss: 11.358381, Test Accuracy: 89.020
+Epoch 130:                     
+	Train Loss: 2.146309, Train Accuracy: 96.942                     
+	Test Loss: 11.358178, Test Accuracy: 89.240
+Epoch 140:                     
+	Train Loss: 2.146002, Train Accuracy: 97.138                     
+	Test Loss: 11.358987, Test Accuracy: 89.140
+Epoch 150:                     
+	Train Loss: 2.145605, Train Accuracy: 97.318                     
+	Test Loss: 11.359760, Test Accuracy: 89.240
+Epoch 160:                     
+	Train Loss: 2.145139, Train Accuracy: 97.573                     
+	Test Loss: 11.359437, Test Accuracy: 89.480
+Epoch 170:                     
+	Train Loss: 2.144778, Train Accuracy: 97.722                     
+	Test Loss: 11.361714, Test Accuracy: 89.260
+Epoch 180:                     
+	Train Loss: 2.144808, Train Accuracy: 97.675                     
+	Test Loss: 11.362456, Test Accuracy: 89.140
+Epoch 190:                     
+	Train Loss: 2.144397, Train Accuracy: 97.880                     
+	Test Loss: 11.360504, Test Accuracy: 89.530
+Epoch 200:                     
+	Train Loss: 2.144339, Train Accuracy: 97.878                     
+	Test Loss: 11.360860, Test Accuracy: 89.470
+**** Model saved to ../models/LeNet5/avgcl5/r_0.9.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_KuzushijiMNIST_cl5_r_0.9random.png ****
+
+**** Loading CIFAR10 dataset ****
+**** Training ResNet18 model for CIFAR10 to generate PL ****
+Epoch 10:                     
+	Train Loss: 0.581571, Train Accuracy: 79.558                     
+	Test Loss: 0.758369, Test Accuracy: 74.350
+Epoch 20:                     
+	Train Loss: 0.330632, Train Accuracy: 88.314                     
+	Test Loss: 0.820130, Test Accuracy: 75.890
+Epoch 30:                     
+	Train Loss: 0.192141, Train Accuracy: 93.168                     
+	Test Loss: 0.919293, Test Accuracy: 77.460
+Epoch 40:                     
+	Train Loss: 0.119913, Train Accuracy: 95.828                     
+	Test Loss: 1.037889, Test Accuracy: 77.560
+Epoch 50:                     
+	Train Loss: 0.071702, Train Accuracy: 97.548                     
+	Test Loss: 1.108915, Test Accuracy: 78.070
+Epoch 60:                     
+	Train Loss: 0.057437, Train Accuracy: 98.000                     
+	Test Loss: 1.203606, Test Accuracy: 77.670
+Epoch 70:                     
+	Train Loss: 0.047968, Train Accuracy: 98.324                     
+	Test Loss: 1.206824, Test Accuracy: 78.590
+Epoch 80:                     
+	Train Loss: 0.041139, Train Accuracy: 98.580                     
+	Test Loss: 1.252121, Test Accuracy: 78.200
+Epoch 90:                     
+	Train Loss: 0.027361, Train Accuracy: 99.038                     
+	Test Loss: 1.316751, Test Accuracy: 79.040
+Epoch 100:                     
+	Train Loss: 0.026564, Train Accuracy: 99.106                     
+	Test Loss: 1.320702, Test Accuracy: 78.770
+**** Model saved to ../models/PL_CIFAR10_ResNet18.pth ****
+**** Generating partial labels for CIFAR10 with avgCL 3 ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl3_train.npy ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl3_test.npy ****
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.089266, Train Accuracy: 36.734                     
+	Test Loss: 6.769018, Test Accuracy: 62.390
+Epoch 20:                     
+	Train Loss: 2.004866, Train Accuracy: 45.402                     
+	Test Loss: 6.742577, Test Accuracy: 65.340
+Epoch 30:                     
+	Train Loss: 1.945396, Train Accuracy: 51.422                     
+	Test Loss: 6.741706, Test Accuracy: 65.550
+Epoch 40:                     
+	Train Loss: 1.900915, Train Accuracy: 55.904                     
+	Test Loss: 6.754150, Test Accuracy: 64.580
+Epoch 50:                     
+	Train Loss: 1.861701, Train Accuracy: 59.850                     
+	Test Loss: 6.745644, Test Accuracy: 65.180
+Epoch 60:                     
+	Train Loss: 1.833800, Train Accuracy: 62.648                     
+	Test Loss: 6.761976, Test Accuracy: 63.470
+Epoch 70:                     
+	Train Loss: 1.811033, Train Accuracy: 64.912                     
+	Test Loss: 6.756978, Test Accuracy: 64.110
+Epoch 80:                     
+	Train Loss: 1.793632, Train Accuracy: 66.650                     
+	Test Loss: 6.768691, Test Accuracy: 62.770
+Epoch 90:                     
+	Train Loss: 1.775127, Train Accuracy: 68.536                     
+	Test Loss: 6.780101, Test Accuracy: 61.570
+Epoch 100:                     
+	Train Loss: 1.758489, Train Accuracy: 70.202                     
+	Test Loss: 6.785954, Test Accuracy: 60.790
+Epoch 110:                     
+	Train Loss: 1.746889, Train Accuracy: 71.368                     
+	Test Loss: 6.785074, Test Accuracy: 60.860
+Epoch 120:                     
+	Train Loss: 1.732164, Train Accuracy: 72.830                     
+	Test Loss: 6.791455, Test Accuracy: 60.290
+Epoch 130:                     
+	Train Loss: 1.720855, Train Accuracy: 73.980                     
+	Test Loss: 6.790686, Test Accuracy: 60.470
+Epoch 140:                     
+	Train Loss: 1.709627, Train Accuracy: 75.072                     
+	Test Loss: 6.796241, Test Accuracy: 59.920
+Epoch 150:                     
+	Train Loss: 1.700796, Train Accuracy: 75.978                     
+	Test Loss: 6.797258, Test Accuracy: 59.470
+Epoch 160:                     
+	Train Loss: 1.691571, Train Accuracy: 76.912                     
+	Test Loss: 6.801915, Test Accuracy: 59.160
+Epoch 170:                     
+	Train Loss: 1.683599, Train Accuracy: 77.708                     
+	Test Loss: 6.812686, Test Accuracy: 58.150
+Epoch 180:                     
+	Train Loss: 1.675092, Train Accuracy: 78.528                     
+	Test Loss: 6.820124, Test Accuracy: 57.450
+Epoch 190:                     
+	Train Loss: 1.667611, Train Accuracy: 79.284                     
+	Test Loss: 6.807234, Test Accuracy: 58.460
+Epoch 200:                     
+	Train Loss: 1.662274, Train Accuracy: 79.816                     
+	Test Loss: 6.811024, Test Accuracy: 58.030
+**** Model saved to ../models/ResNet18/avgcl3/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_noLSrandom.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.000197, Train Accuracy: 47.102                     
+	Test Loss: 6.748480, Test Accuracy: 64.480
+Epoch 20:                     
+	Train Loss: 1.840140, Train Accuracy: 64.528                     
+	Test Loss: 6.709123, Test Accuracy: 68.990
+Epoch 30:                     
+	Train Loss: 1.738856, Train Accuracy: 75.618                     
+	Test Loss: 6.715729, Test Accuracy: 68.580
+Epoch 40:                     
+	Train Loss: 1.673678, Train Accuracy: 82.666                     
+	Test Loss: 6.700779, Test Accuracy: 70.200
+Epoch 50:                     
+	Train Loss: 1.630542, Train Accuracy: 87.342                     
+	Test Loss: 6.698469, Test Accuracy: 70.590
+Epoch 60:                     
+	Train Loss: 1.602161, Train Accuracy: 90.406                     
+	Test Loss: 6.697006, Test Accuracy: 70.780
+Epoch 70:                     
+	Train Loss: 1.582245, Train Accuracy: 92.574                     
+	Test Loss: 6.694368, Test Accuracy: 71.000
+Epoch 80:                     
+	Train Loss: 1.570380, Train Accuracy: 93.814                     
+	Test Loss: 6.691223, Test Accuracy: 71.440
+Epoch 90:                     
+	Train Loss: 1.563171, Train Accuracy: 94.600                     
+	Test Loss: 6.691497, Test Accuracy: 71.300
+Epoch 100:                     
+	Train Loss: 1.556167, Train Accuracy: 95.340                     
+	Test Loss: 6.687513, Test Accuracy: 71.650
+Epoch 110:                     
+	Train Loss: 1.552612, Train Accuracy: 95.732                     
+	Test Loss: 6.686375, Test Accuracy: 71.860
+Epoch 120:                     
+	Train Loss: 1.548187, Train Accuracy: 96.186                     
+	Test Loss: 6.689167, Test Accuracy: 71.460
+Epoch 130:                     
+	Train Loss: 1.546271, Train Accuracy: 96.384                     
+	Test Loss: 6.687272, Test Accuracy: 71.800
+Epoch 140:                     
+	Train Loss: 1.544309, Train Accuracy: 96.602                     
+	Test Loss: 6.687599, Test Accuracy: 71.840
+Epoch 150:                     
+	Train Loss: 1.543324, Train Accuracy: 96.706                     
+	Test Loss: 6.688037, Test Accuracy: 71.600
+Epoch 160:                     
+	Train Loss: 1.541348, Train Accuracy: 96.906                     
+	Test Loss: 6.691361, Test Accuracy: 71.220
+Epoch 170:                     
+	Train Loss: 1.540435, Train Accuracy: 97.012                     
+	Test Loss: 6.684696, Test Accuracy: 72.090
+Epoch 180:                     
+	Train Loss: 1.539306, Train Accuracy: 97.122                     
+	Test Loss: 6.687109, Test Accuracy: 71.860
+Epoch 190:                     
+	Train Loss: 1.538797, Train Accuracy: 97.174                     
+	Test Loss: 6.687857, Test Accuracy: 71.810
+Epoch 200:                     
+	Train Loss: 1.538167, Train Accuracy: 97.238                     
+	Test Loss: 6.685541, Test Accuracy: 72.090
+**** Model saved to ../models/ResNet18/avgcl3/r_0.1.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_0.1random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and a smoothing rate of 0.3 ****
+Epoch 10:                     
+	Train Loss: 1.927695, Train Accuracy: 60.860                     
+	Test Loss: 6.721070, Test Accuracy: 67.540
+Epoch 20:                     
+	Train Loss: 1.818907, Train Accuracy: 74.782                     
+	Test Loss: 6.706413, Test Accuracy: 69.560
+Epoch 30:                     
+	Train Loss: 1.751383, Train Accuracy: 83.144                     
+	Test Loss: 6.695442, Test Accuracy: 70.720
+Epoch 40:                     
+	Train Loss: 1.709261, Train Accuracy: 88.452                     
+	Test Loss: 6.689717, Test Accuracy: 71.510
+Epoch 50:                     
+	Train Loss: 1.684208, Train Accuracy: 91.564                     
+	Test Loss: 6.687968, Test Accuracy: 71.640
+Epoch 60:                     
+	Train Loss: 1.667902, Train Accuracy: 93.598                     
+	Test Loss: 6.688235, Test Accuracy: 71.720
+Epoch 70:                     
+	Train Loss: 1.657876, Train Accuracy: 94.840                     
+	Test Loss: 6.686870, Test Accuracy: 71.740
+Epoch 80:                     
+	Train Loss: 1.652889, Train Accuracy: 95.412                     
+	Test Loss: 6.680958, Test Accuracy: 72.290
+Epoch 90:                     
+	Train Loss: 1.647553, Train Accuracy: 96.060                     
+	Test Loss: 6.678943, Test Accuracy: 72.610
+Epoch 100:                     
+	Train Loss: 1.646030, Train Accuracy: 96.244                     
+	Test Loss: 6.680561, Test Accuracy: 72.490
+Epoch 110:                     
+	Train Loss: 1.643823, Train Accuracy: 96.482                     
+	Test Loss: 6.679105, Test Accuracy: 72.750
+Epoch 120:                     
+	Train Loss: 1.643012, Train Accuracy: 96.584                     
+	Test Loss: 6.683288, Test Accuracy: 72.370
+Epoch 130:                     
+	Train Loss: 1.640977, Train Accuracy: 96.832                     
+	Test Loss: 6.681787, Test Accuracy: 72.390
+Epoch 140:                     
+	Train Loss: 1.641097, Train Accuracy: 96.814                     
+	Test Loss: 6.681686, Test Accuracy: 72.280
+Epoch 150:                     
+	Train Loss: 1.639720, Train Accuracy: 96.978                     
+	Test Loss: 6.683120, Test Accuracy: 72.090
+Epoch 160:                     
+	Train Loss: 1.639061, Train Accuracy: 97.060                     
+	Test Loss: 6.682531, Test Accuracy: 72.450
+Epoch 170:                     
+	Train Loss: 1.638390, Train Accuracy: 97.120                     
+	Test Loss: 6.683288, Test Accuracy: 72.170
+Epoch 180:                     
+	Train Loss: 1.638120, Train Accuracy: 97.158                     
+	Test Loss: 6.683256, Test Accuracy: 72.320
+Epoch 190:                     
+	Train Loss: 1.637834, Train Accuracy: 97.194                     
+	Test Loss: 6.681348, Test Accuracy: 72.500
+Epoch 200:                     
+	Train Loss: 1.637467, Train Accuracy: 97.242                     
+	Test Loss: 6.681147, Test Accuracy: 72.560
+**** Model saved to ../models/ResNet18/avgcl3/r_0.3.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_0.3random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and a smoothing rate of 0.5 ****
+Epoch 10:                     
+	Train Loss: 1.943154, Train Accuracy: 67.208                     
+	Test Loss: 6.743607, Test Accuracy: 65.480
+Epoch 20:                     
+	Train Loss: 1.855995, Train Accuracy: 79.930                     
+	Test Loss: 6.702084, Test Accuracy: 69.920
+Epoch 30:                     
+	Train Loss: 1.805875, Train Accuracy: 87.306                     
+	Test Loss: 6.684074, Test Accuracy: 71.890
+Epoch 40:                     
+	Train Loss: 1.776241, Train Accuracy: 91.676                     
+	Test Loss: 6.686558, Test Accuracy: 71.500
+Epoch 50:                     
+	Train Loss: 1.761770, Train Accuracy: 93.780                     
+	Test Loss: 6.678615, Test Accuracy: 72.590
+Epoch 60:                     
+	Train Loss: 1.753787, Train Accuracy: 94.918                     
+	Test Loss: 6.675803, Test Accuracy: 72.840
+Epoch 70:                     
+	Train Loss: 1.748169, Train Accuracy: 95.716                     
+	Test Loss: 6.667920, Test Accuracy: 73.650
+Epoch 80:                     
+	Train Loss: 1.745059, Train Accuracy: 96.108                     
+	Test Loss: 6.672742, Test Accuracy: 73.270
+Epoch 90:                     
+	Train Loss: 1.742289, Train Accuracy: 96.502                     
+	Test Loss: 6.669000, Test Accuracy: 73.690
+Epoch 100:                     
+	Train Loss: 1.740679, Train Accuracy: 96.710                     
+	Test Loss: 6.674560, Test Accuracy: 73.040
+Epoch 110:                     
+	Train Loss: 1.739283, Train Accuracy: 96.882                     
+	Test Loss: 6.669774, Test Accuracy: 73.660
+Epoch 120:                     
+	Train Loss: 1.738401, Train Accuracy: 97.026                     
+	Test Loss: 6.666726, Test Accuracy: 73.920
+Epoch 130:                     
+	Train Loss: 1.737794, Train Accuracy: 97.096                     
+	Test Loss: 6.669143, Test Accuracy: 73.490
+Epoch 140:                     
+	Train Loss: 1.737272, Train Accuracy: 97.152                     
+	Test Loss: 6.666102, Test Accuracy: 73.950
+Epoch 150:                     
+	Train Loss: 1.736647, Train Accuracy: 97.250                     
+	Test Loss: 6.664564, Test Accuracy: 74.050
+Epoch 160:                     
+	Train Loss: 1.736437, Train Accuracy: 97.274                     
+	Test Loss: 6.667715, Test Accuracy: 73.860
+Epoch 170:                     
+	Train Loss: 1.736078, Train Accuracy: 97.312                     
+	Test Loss: 6.664822, Test Accuracy: 73.940
+Epoch 180:                     
+	Train Loss: 1.735435, Train Accuracy: 97.380                     
+	Test Loss: 6.665275, Test Accuracy: 73.940
+Epoch 190:                     
+	Train Loss: 1.735011, Train Accuracy: 97.424                     
+	Test Loss: 6.664819, Test Accuracy: 74.050
+Epoch 200:                     
+	Train Loss: 1.734509, Train Accuracy: 97.490                     
+	Test Loss: 6.661610, Test Accuracy: 74.330
+**** Model saved to ../models/ResNet18/avgcl3/r_0.5.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_0.5random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and a smoothing rate of 0.7 ****
+Epoch 10:                     
+	Train Loss: 1.984442, Train Accuracy: 71.144                     
+	Test Loss: 6.708042, Test Accuracy: 69.040
+Epoch 20:                     
+	Train Loss: 1.914653, Train Accuracy: 83.170                     
+	Test Loss: 6.675856, Test Accuracy: 72.590
+Epoch 30:                     
+	Train Loss: 1.878137, Train Accuracy: 89.662                     
+	Test Loss: 6.680779, Test Accuracy: 72.170
+Epoch 40:                     
+	Train Loss: 1.858741, Train Accuracy: 93.276                     
+	Test Loss: 6.674143, Test Accuracy: 72.870
+Epoch 50:                     
+	Train Loss: 1.850434, Train Accuracy: 94.782                     
+	Test Loss: 6.669126, Test Accuracy: 73.600
+Epoch 60:                     
+	Train Loss: 1.845039, Train Accuracy: 95.716                     
+	Test Loss: 6.675487, Test Accuracy: 72.730
+Epoch 70:                     
+	Train Loss: 1.841812, Train Accuracy: 96.286                     
+	Test Loss: 6.662545, Test Accuracy: 74.160
+Epoch 80:                     
+	Train Loss: 1.840087, Train Accuracy: 96.564                     
+	Test Loss: 6.667490, Test Accuracy: 73.890
+Epoch 90:                     
+	Train Loss: 1.838893, Train Accuracy: 96.724                     
+	Test Loss: 6.664191, Test Accuracy: 74.170
+Epoch 100:                     
+	Train Loss: 1.837725, Train Accuracy: 96.912                     
+	Test Loss: 6.665582, Test Accuracy: 74.060
+Epoch 110:                     
+	Train Loss: 1.836843, Train Accuracy: 97.040                     
+	Test Loss: 6.667019, Test Accuracy: 73.700
+Epoch 120:                     
+	Train Loss: 1.836014, Train Accuracy: 97.164                     
+	Test Loss: 6.666964, Test Accuracy: 73.730
+Epoch 130:                     
+	Train Loss: 1.835102, Train Accuracy: 97.308                     
+	Test Loss: 6.664357, Test Accuracy: 74.120
+Epoch 140:                     
+	Train Loss: 1.834482, Train Accuracy: 97.402                     
+	Test Loss: 6.664427, Test Accuracy: 74.060
+Epoch 150:                     
+	Train Loss: 1.833900, Train Accuracy: 97.474                     
+	Test Loss: 6.667342, Test Accuracy: 73.710
+Epoch 160:                     
+	Train Loss: 1.833422, Train Accuracy: 97.548                     
+	Test Loss: 6.665056, Test Accuracy: 74.030
+Epoch 170:                     
+	Train Loss: 1.832856, Train Accuracy: 97.612                     
+	Test Loss: 6.663230, Test Accuracy: 74.260
+Epoch 180:                     
+	Train Loss: 1.832596, Train Accuracy: 97.662                     
+	Test Loss: 6.665513, Test Accuracy: 74.040
+Epoch 190:                     
+	Train Loss: 1.832242, Train Accuracy: 97.702                     
+	Test Loss: 6.663574, Test Accuracy: 74.040
+Epoch 200:                     
+	Train Loss: 1.831858, Train Accuracy: 97.754                     
+	Test Loss: 6.663015, Test Accuracy: 74.200
+**** Model saved to ../models/ResNet18/avgcl3/r_0.7.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_0.7random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=3 and a smoothing rate of 0.9 ****
+Epoch 10:                     
+	Train Loss: 2.040695, Train Accuracy: 73.118                     
+	Test Loss: 6.702408, Test Accuracy: 69.230
+Epoch 20:                     
+	Train Loss: 1.979474, Train Accuracy: 85.034                     
+	Test Loss: 6.668333, Test Accuracy: 73.030
+Epoch 30:                     
+	Train Loss: 1.951313, Train Accuracy: 91.858                     
+	Test Loss: 6.658904, Test Accuracy: 74.250
+Epoch 40:                     
+	Train Loss: 1.940652, Train Accuracy: 95.040                     
+	Test Loss: 6.652699, Test Accuracy: 74.780
+Epoch 50:                     
+	Train Loss: 1.936538, Train Accuracy: 96.292                     
+	Test Loss: 6.653702, Test Accuracy: 74.800
+Epoch 60:                     
+	Train Loss: 1.934440, Train Accuracy: 96.816                     
+	Test Loss: 6.653219, Test Accuracy: 74.910
+Epoch 70:                     
+	Train Loss: 1.932663, Train Accuracy: 97.286                     
+	Test Loss: 6.650825, Test Accuracy: 75.040
+Epoch 80:                     
+	Train Loss: 1.931715, Train Accuracy: 97.488                     
+	Test Loss: 6.649663, Test Accuracy: 75.200
+Epoch 90:                     
+	Train Loss: 1.930619, Train Accuracy: 97.680                     
+	Test Loss: 6.654363, Test Accuracy: 74.490
+Epoch 100:                     
+	Train Loss: 1.930184, Train Accuracy: 97.790                     
+	Test Loss: 6.650679, Test Accuracy: 74.990
+Epoch 110:                     
+	Train Loss: 1.929760, Train Accuracy: 97.856                     
+	Test Loss: 6.649101, Test Accuracy: 75.270
+Epoch 120:                     
+	Train Loss: 1.929160, Train Accuracy: 97.996                     
+	Test Loss: 6.652360, Test Accuracy: 75.010
+Epoch 130:                     
+	Train Loss: 1.928777, Train Accuracy: 98.034                     
+	Test Loss: 6.649371, Test Accuracy: 75.220
+Epoch 140:                     
+	Train Loss: 1.928469, Train Accuracy: 98.050                     
+	Test Loss: 6.648336, Test Accuracy: 75.300
+Epoch 150:                     
+	Train Loss: 1.928034, Train Accuracy: 98.178                     
+	Test Loss: 6.647276, Test Accuracy: 75.520
+Epoch 160:                     
+	Train Loss: 1.927735, Train Accuracy: 98.224                     
+	Test Loss: 6.649471, Test Accuracy: 75.090
+Epoch 170:                     
+	Train Loss: 1.927328, Train Accuracy: 98.264                     
+	Test Loss: 6.648407, Test Accuracy: 75.250
+Epoch 180:                     
+	Train Loss: 1.927062, Train Accuracy: 98.306                     
+	Test Loss: 6.647490, Test Accuracy: 75.250
+Epoch 190:                     
+	Train Loss: 1.926799, Train Accuracy: 98.372                     
+	Test Loss: 6.647674, Test Accuracy: 75.380
+Epoch 200:                     
+	Train Loss: 1.926333, Train Accuracy: 98.410                     
+	Test Loss: 6.648301, Test Accuracy: 75.260
+**** Model saved to ../models/ResNet18/avgcl3/r_0.9.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl3_r_0.9random.png ****
+**** Generating partial labels for CIFAR10 with avgCL 4 ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl4_train.npy ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl4_test.npy ****
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.165515, Train Accuracy: 28.898                     
+	Test Loss: 9.113716, Test Accuracy: 65.900
+Epoch 20:                     
+	Train Loss: 2.075672, Train Accuracy: 38.308                     
+	Test Loss: 9.134629, Test Accuracy: 64.610
+Epoch 30:                     
+	Train Loss: 2.002853, Train Accuracy: 45.572                     
+	Test Loss: 9.150895, Test Accuracy: 63.420
+Epoch 40:                     
+	Train Loss: 1.946177, Train Accuracy: 51.310                     
+	Test Loss: 9.176944, Test Accuracy: 61.140
+Epoch 50:                     
+	Train Loss: 1.891412, Train Accuracy: 56.806                     
+	Test Loss: 9.187381, Test Accuracy: 59.870
+Epoch 60:                     
+	Train Loss: 1.845805, Train Accuracy: 61.408                     
+	Test Loss: 9.200315, Test Accuracy: 59.130
+Epoch 70:                     
+	Train Loss: 1.805653, Train Accuracy: 65.460                     
+	Test Loss: 9.214288, Test Accuracy: 57.380
+Epoch 80:                     
+	Train Loss: 1.777463, Train Accuracy: 68.264                     
+	Test Loss: 9.218372, Test Accuracy: 57.360
+Epoch 90:                     
+	Train Loss: 1.750217, Train Accuracy: 71.038                     
+	Test Loss: 9.223343, Test Accuracy: 56.470
+Epoch 100:                     
+	Train Loss: 1.730100, Train Accuracy: 73.046                     
+	Test Loss: 9.219373, Test Accuracy: 56.860
+Epoch 110:                     
+	Train Loss: 1.710303, Train Accuracy: 75.026                     
+	Test Loss: 9.229476, Test Accuracy: 55.960
+Epoch 120:                     
+	Train Loss: 1.692544, Train Accuracy: 76.784                     
+	Test Loss: 9.239320, Test Accuracy: 54.920
+Epoch 130:                     
+	Train Loss: 1.676508, Train Accuracy: 78.366                     
+	Test Loss: 9.240221, Test Accuracy: 55.050
+Epoch 140:                     
+	Train Loss: 1.665596, Train Accuracy: 79.516                     
+	Test Loss: 9.241273, Test Accuracy: 54.830
+Epoch 150:                     
+	Train Loss: 1.656277, Train Accuracy: 80.428                     
+	Test Loss: 9.237987, Test Accuracy: 55.080
+Epoch 160:                     
+	Train Loss: 1.645809, Train Accuracy: 81.462                     
+	Test Loss: 9.252018, Test Accuracy: 53.490
+Epoch 170:                     
+	Train Loss: 1.639330, Train Accuracy: 82.104                     
+	Test Loss: 9.247433, Test Accuracy: 54.040
+Epoch 180:                     
+	Train Loss: 1.632851, Train Accuracy: 82.758                     
+	Test Loss: 9.249387, Test Accuracy: 54.030
+Epoch 190:                     
+	Train Loss: 1.625552, Train Accuracy: 83.474                     
+	Test Loss: 9.250420, Test Accuracy: 53.980
+Epoch 200:                     
+	Train Loss: 1.620817, Train Accuracy: 83.968                     
+	Test Loss: 9.257134, Test Accuracy: 53.040
+**** Model saved to ../models/ResNet18/avgcl4/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_noLSrandom.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.123152, Train Accuracy: 34.352                     
+	Test Loss: 9.124504, Test Accuracy: 65.080
+Epoch 20:                     
+	Train Loss: 1.974417, Train Accuracy: 50.904                     
+	Test Loss: 9.122969, Test Accuracy: 66.350
+Epoch 30:                     
+	Train Loss: 1.845080, Train Accuracy: 65.140                     
+	Test Loss: 9.110824, Test Accuracy: 68.420
+Epoch 40:                     
+	Train Loss: 1.752987, Train Accuracy: 75.400                     
+	Test Loss: 9.117002, Test Accuracy: 68.110
+Epoch 50:                     
+	Train Loss: 1.689811, Train Accuracy: 82.314                     
+	Test Loss: 9.116907, Test Accuracy: 68.360
+Epoch 60:                     
+	Train Loss: 1.646167, Train Accuracy: 87.138                     
+	Test Loss: 9.112414, Test Accuracy: 68.840
+Epoch 70:                     
+	Train Loss: 1.616962, Train Accuracy: 90.314                     
+	Test Loss: 9.114050, Test Accuracy: 68.740
+Epoch 80:                     
+	Train Loss: 1.595737, Train Accuracy: 92.636                     
+	Test Loss: 9.119222, Test Accuracy: 68.170
+Epoch 90:                     
+	Train Loss: 1.583383, Train Accuracy: 93.960                     
+	Test Loss: 9.116181, Test Accuracy: 68.540
+Epoch 100:                     
+	Train Loss: 1.575012, Train Accuracy: 94.836                     
+	Test Loss: 9.115654, Test Accuracy: 68.510
+Epoch 110:                     
+	Train Loss: 1.567597, Train Accuracy: 95.672                     
+	Test Loss: 9.111696, Test Accuracy: 69.050
+Epoch 120:                     
+	Train Loss: 1.562157, Train Accuracy: 96.246                     
+	Test Loss: 9.110616, Test Accuracy: 69.310
+Epoch 130:                     
+	Train Loss: 1.558997, Train Accuracy: 96.594                     
+	Test Loss: 9.112890, Test Accuracy: 68.930
+Epoch 140:                     
+	Train Loss: 1.556482, Train Accuracy: 96.848                     
+	Test Loss: 9.109830, Test Accuracy: 69.470
+Epoch 150:                     
+	Train Loss: 1.554661, Train Accuracy: 97.054                     
+	Test Loss: 9.110512, Test Accuracy: 69.390
+Epoch 160:                     
+	Train Loss: 1.552703, Train Accuracy: 97.268                     
+	Test Loss: 9.110504, Test Accuracy: 69.200
+Epoch 170:                     
+	Train Loss: 1.550809, Train Accuracy: 97.460                     
+	Test Loss: 9.109446, Test Accuracy: 69.490
+Epoch 180:                     
+	Train Loss: 1.550210, Train Accuracy: 97.520                     
+	Test Loss: 9.113956, Test Accuracy: 68.830
+Epoch 190:                     
+	Train Loss: 1.549266, Train Accuracy: 97.614                     
+	Test Loss: 9.111117, Test Accuracy: 69.280
+Epoch 200:                     
+	Train Loss: 1.547923, Train Accuracy: 97.764                     
+	Test Loss: 9.107755, Test Accuracy: 69.630
+**** Model saved to ../models/ResNet18/avgcl4/r_0.1.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_0.1random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and a smoothing rate of 0.3 ****
+Epoch 10:                     
+	Train Loss: 2.016278, Train Accuracy: 52.674                     
+	Test Loss: 9.099025, Test Accuracy: 68.740
+Epoch 20:                     
+	Train Loss: 1.884266, Train Accuracy: 70.476                     
+	Test Loss: 9.098122, Test Accuracy: 69.970
+Epoch 30:                     
+	Train Loss: 1.810687, Train Accuracy: 80.408                     
+	Test Loss: 9.087010, Test Accuracy: 71.470
+Epoch 40:                     
+	Train Loss: 1.763780, Train Accuracy: 86.570                     
+	Test Loss: 9.088207, Test Accuracy: 71.450
+Epoch 50:                     
+	Train Loss: 1.730399, Train Accuracy: 90.998                     
+	Test Loss: 9.082854, Test Accuracy: 72.080
+Epoch 60:                     
+	Train Loss: 1.711901, Train Accuracy: 93.400                     
+	Test Loss: 9.084599, Test Accuracy: 71.900
+Epoch 70:                     
+	Train Loss: 1.703382, Train Accuracy: 94.476                     
+	Test Loss: 9.087481, Test Accuracy: 71.700
+Epoch 80:                     
+	Train Loss: 1.694883, Train Accuracy: 95.552                     
+	Test Loss: 9.084103, Test Accuracy: 71.950
+Epoch 90:                     
+	Train Loss: 1.691047, Train Accuracy: 96.022                     
+	Test Loss: 9.087146, Test Accuracy: 71.860
+Epoch 100:                     
+	Train Loss: 1.688618, Train Accuracy: 96.320                     
+	Test Loss: 9.081665, Test Accuracy: 72.340
+Epoch 110:                     
+	Train Loss: 1.686762, Train Accuracy: 96.548                     
+	Test Loss: 9.083204, Test Accuracy: 72.020
+Epoch 120:                     
+	Train Loss: 1.685653, Train Accuracy: 96.678                     
+	Test Loss: 9.075148, Test Accuracy: 72.890
+Epoch 130:                     
+	Train Loss: 1.683914, Train Accuracy: 96.876                     
+	Test Loss: 9.082296, Test Accuracy: 72.110
+Epoch 140:                     
+	Train Loss: 1.682394, Train Accuracy: 97.076                     
+	Test Loss: 9.078539, Test Accuracy: 72.750
+Epoch 150:                     
+	Train Loss: 1.681383, Train Accuracy: 97.218                     
+	Test Loss: 9.077658, Test Accuracy: 72.720
+Epoch 160:                     
+	Train Loss: 1.680436, Train Accuracy: 97.316                     
+	Test Loss: 9.077866, Test Accuracy: 72.730
+Epoch 170:                     
+	Train Loss: 1.680116, Train Accuracy: 97.366                     
+	Test Loss: 9.076165, Test Accuracy: 72.930
+Epoch 180:                     
+	Train Loss: 1.679498, Train Accuracy: 97.452                     
+	Test Loss: 9.078114, Test Accuracy: 72.800
+Epoch 190:                     
+	Train Loss: 1.679793, Train Accuracy: 97.410                     
+	Test Loss: 9.085136, Test Accuracy: 72.080
+Epoch 200:                     
+	Train Loss: 1.678956, Train Accuracy: 97.510                     
+	Test Loss: 9.078992, Test Accuracy: 72.760
+**** Model saved to ../models/ResNet18/avgcl4/r_0.3.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_0.3random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and a smoothing rate of 0.5 ****
+Epoch 10:                     
+	Train Loss: 2.007182, Train Accuracy: 64.916                     
+	Test Loss: 9.091031, Test Accuracy: 69.800
+Epoch 20:                     
+	Train Loss: 1.920340, Train Accuracy: 79.396                     
+	Test Loss: 9.082212, Test Accuracy: 71.400
+Epoch 30:                     
+	Train Loss: 1.874801, Train Accuracy: 86.904                     
+	Test Loss: 9.082839, Test Accuracy: 71.910
+Epoch 40:                     
+	Train Loss: 1.848135, Train Accuracy: 91.316                     
+	Test Loss: 9.078305, Test Accuracy: 72.290
+Epoch 50:                     
+	Train Loss: 1.832671, Train Accuracy: 93.776                     
+	Test Loss: 9.077697, Test Accuracy: 72.480
+Epoch 60:                     
+	Train Loss: 1.825181, Train Accuracy: 94.914                     
+	Test Loss: 9.075322, Test Accuracy: 72.750
+Epoch 70:                     
+	Train Loss: 1.821824, Train Accuracy: 95.406                     
+	Test Loss: 9.078315, Test Accuracy: 72.510
+Epoch 80:                     
+	Train Loss: 1.816892, Train Accuracy: 96.178                     
+	Test Loss: 9.078160, Test Accuracy: 72.630
+Epoch 90:                     
+	Train Loss: 1.815052, Train Accuracy: 96.456                     
+	Test Loss: 9.076283, Test Accuracy: 72.820
+Epoch 100:                     
+	Train Loss: 1.813592, Train Accuracy: 96.670                     
+	Test Loss: 9.080094, Test Accuracy: 72.410
+Epoch 110:                     
+	Train Loss: 1.812430, Train Accuracy: 96.854                     
+	Test Loss: 9.079937, Test Accuracy: 72.290
+Epoch 120:                     
+	Train Loss: 1.811129, Train Accuracy: 97.014                     
+	Test Loss: 9.079038, Test Accuracy: 72.390
+Epoch 130:                     
+	Train Loss: 1.810427, Train Accuracy: 97.132                     
+	Test Loss: 9.080020, Test Accuracy: 72.570
+Epoch 140:                     
+	Train Loss: 1.809926, Train Accuracy: 97.206                     
+	Test Loss: 9.075618, Test Accuracy: 73.020
+Epoch 150:                     
+	Train Loss: 1.809141, Train Accuracy: 97.296                     
+	Test Loss: 9.077317, Test Accuracy: 72.780
+Epoch 160:                     
+	Train Loss: 1.808467, Train Accuracy: 97.402                     
+	Test Loss: 9.074814, Test Accuracy: 73.000
+Epoch 170:                     
+	Train Loss: 1.808201, Train Accuracy: 97.436                     
+	Test Loss: 9.075097, Test Accuracy: 72.850
+Epoch 180:                     
+	Train Loss: 1.807854, Train Accuracy: 97.476                     
+	Test Loss: 9.071424, Test Accuracy: 73.380
+Epoch 190:                     
+	Train Loss: 1.807495, Train Accuracy: 97.536                     
+	Test Loss: 9.076564, Test Accuracy: 72.610
+Epoch 200:                     
+	Train Loss: 1.807471, Train Accuracy: 97.536                     
+	Test Loss: 9.072511, Test Accuracy: 73.090
+**** Model saved to ../models/ResNet18/avgcl4/r_0.5.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_0.5random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and a smoothing rate of 0.7 ****
+Epoch 10:                     
+	Train Loss: 2.063038, Train Accuracy: 70.334                     
+	Test Loss: 9.075817, Test Accuracy: 71.020
+Epoch 20:                     
+	Train Loss: 2.000000, Train Accuracy: 83.886                     
+	Test Loss: 9.073856, Test Accuracy: 72.210
+Epoch 30:                     
+	Train Loss: 1.971695, Train Accuracy: 90.056                     
+	Test Loss: 9.072645, Test Accuracy: 72.450
+Epoch 40:                     
+	Train Loss: 1.956699, Train Accuracy: 93.380                     
+	Test Loss: 9.072661, Test Accuracy: 72.540
+Epoch 50:                     
+	Train Loss: 1.948048, Train Accuracy: 95.226                     
+	Test Loss: 9.072188, Test Accuracy: 72.820
+Epoch 60:                     
+	Train Loss: 1.943239, Train Accuracy: 96.190                     
+	Test Loss: 9.071391, Test Accuracy: 72.850
+Epoch 70:                     
+	Train Loss: 1.941744, Train Accuracy: 96.456                     
+	Test Loss: 9.069263, Test Accuracy: 73.200
+Epoch 80:                     
+	Train Loss: 1.940037, Train Accuracy: 96.778                     
+	Test Loss: 9.067197, Test Accuracy: 73.140
+Epoch 90:                     
+	Train Loss: 1.938508, Train Accuracy: 97.068                     
+	Test Loss: 9.072639, Test Accuracy: 72.680
+Epoch 100:                     
+	Train Loss: 1.937178, Train Accuracy: 97.332                     
+	Test Loss: 9.066989, Test Accuracy: 73.410
+Epoch 110:                     
+	Train Loss: 1.937074, Train Accuracy: 97.334                     
+	Test Loss: 9.065094, Test Accuracy: 73.550
+Epoch 120:                     
+	Train Loss: 1.936123, Train Accuracy: 97.486                     
+	Test Loss: 9.064807, Test Accuracy: 73.690
+Epoch 130:                     
+	Train Loss: 1.935546, Train Accuracy: 97.598                     
+	Test Loss: 9.066716, Test Accuracy: 73.380
+Epoch 140:                     
+	Train Loss: 1.934975, Train Accuracy: 97.702                     
+	Test Loss: 9.068130, Test Accuracy: 73.480
+Epoch 150:                     
+	Train Loss: 1.934766, Train Accuracy: 97.730                     
+	Test Loss: 9.068041, Test Accuracy: 73.420
+Epoch 160:                     
+	Train Loss: 1.934749, Train Accuracy: 97.718                     
+	Test Loss: 9.067227, Test Accuracy: 73.530
+Epoch 170:                     
+	Train Loss: 1.934370, Train Accuracy: 97.776                     
+	Test Loss: 9.069900, Test Accuracy: 73.270
+Epoch 180:                     
+	Train Loss: 1.933832, Train Accuracy: 97.886                     
+	Test Loss: 9.069237, Test Accuracy: 73.400
+Epoch 190:                     
+	Train Loss: 1.933539, Train Accuracy: 97.928                     
+	Test Loss: 9.064463, Test Accuracy: 73.860
+Epoch 200:                     
+	Train Loss: 1.933418, Train Accuracy: 97.942                     
+	Test Loss: 9.068584, Test Accuracy: 73.450
+**** Model saved to ../models/ResNet18/avgcl4/r_0.7.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_0.7random.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=4 and a smoothing rate of 0.9 ****
+Epoch 10:                     
+	Train Loss: 2.128810, Train Accuracy: 74.976                     
+	Test Loss: 9.054748, Test Accuracy: 72.500
+Epoch 20:                     
+	Train Loss: 2.085074, Train Accuracy: 88.656                     
+	Test Loss: 9.046502, Test Accuracy: 74.300
+Epoch 30:                     
+	Train Loss: 2.070078, Train Accuracy: 94.598                     
+	Test Loss: 9.046977, Test Accuracy: 74.580
+Epoch 40:                     
+	Train Loss: 2.066459, Train Accuracy: 96.010                     
+	Test Loss: 9.052855, Test Accuracy: 73.950
+Epoch 50:                     
+	Train Loss: 2.063119, Train Accuracy: 97.280                     
+	Test Loss: 9.048177, Test Accuracy: 74.440
+Epoch 60:                     
+	Train Loss: 2.061880, Train Accuracy: 97.742                     
+	Test Loss: 9.049823, Test Accuracy: 74.270
+Epoch 70:                     
+	Train Loss: 2.060811, Train Accuracy: 98.054                     
+	Test Loss: 9.053629, Test Accuracy: 73.860
+Epoch 80:                     
+	Train Loss: 2.060337, Train Accuracy: 98.184                     
+	Test Loss: 9.050000, Test Accuracy: 74.530
+Epoch 90:                     
+	Train Loss: 2.059924, Train Accuracy: 98.220                     
+	Test Loss: 9.049107, Test Accuracy: 74.550
+Epoch 100:                     
+	Train Loss: 2.059540, Train Accuracy: 98.324                     
+	Test Loss: 9.051009, Test Accuracy: 74.290
+Epoch 110:                     
+	Train Loss: 2.058956, Train Accuracy: 98.476                     
+	Test Loss: 9.047770, Test Accuracy: 74.580
+Epoch 120:                     
+	Train Loss: 2.058588, Train Accuracy: 98.540                     
+	Test Loss: 9.050531, Test Accuracy: 74.170
+Epoch 130:                     
+	Train Loss: 2.058316, Train Accuracy: 98.584                     
+	Test Loss: 9.051628, Test Accuracy: 74.270
+Epoch 140:                     
+	Train Loss: 2.058013, Train Accuracy: 98.664                     
+	Test Loss: 9.048287, Test Accuracy: 74.410
+Epoch 150:                     
+	Train Loss: 2.057878, Train Accuracy: 98.666                     
+	Test Loss: 9.048536, Test Accuracy: 74.540
+Epoch 160:                     
+	Train Loss: 2.057651, Train Accuracy: 98.736                     
+	Test Loss: 9.048479, Test Accuracy: 74.430
+Epoch 170:                     
+	Train Loss: 2.057439, Train Accuracy: 98.780                     
+	Test Loss: 9.048510, Test Accuracy: 74.430
+Epoch 180:                     
+	Train Loss: 2.057321, Train Accuracy: 98.806                     
+	Test Loss: 9.048435, Test Accuracy: 74.280
+Epoch 190:                     
+	Train Loss: 2.057155, Train Accuracy: 98.812                     
+	Test Loss: 9.045244, Test Accuracy: 74.520
+Epoch 200:                     
+	Train Loss: 2.056930, Train Accuracy: 98.898                     
+	Test Loss: 9.046036, Test Accuracy: 74.690
+**** Model saved to ../models/ResNet18/avgcl4/r_0.9.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl4_r_0.9random.png ****
+**** Generating partial labels for CIFAR10 with avgCL 5 ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl5_train.npy ****
+**** Partial labels saved to ../datasets/pl_CIFAR10_avgcl5_test.npy ****
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=5 and no label smoothing ****
+Epoch 10:                     
+	Train Loss: 2.207529, Train Accuracy: 24.470                     
+	Test Loss: 11.550156, Test Accuracy: 64.880
+Epoch 20:                     
+	Train Loss: 2.109022, Train Accuracy: 34.644                     
+	Test Loss: 11.603369, Test Accuracy: 62.140
+Epoch 30:                     
+	Train Loss: 2.015391, Train Accuracy: 44.200                     
+	Test Loss: 11.621370, Test Accuracy: 61.790
+Epoch 40:                     
+	Train Loss: 1.933357, Train Accuracy: 52.500                     
+	Test Loss: 11.637609, Test Accuracy: 60.070
+Epoch 50:                     
+	Train Loss: 1.872824, Train Accuracy: 58.656                     
+	Test Loss: 11.648921, Test Accuracy: 59.050
+Epoch 60:                     
+	Train Loss: 1.812507, Train Accuracy: 64.696                     
+	Test Loss: 11.651471, Test Accuracy: 59.190
+Epoch 70:                     
+	Train Loss: 1.771362, Train Accuracy: 68.916                     
+	Test Loss: 11.661122, Test Accuracy: 58.070
+Epoch 80:                     
+	Train Loss: 1.738026, Train Accuracy: 72.202                     
+	Test Loss: 11.669039, Test Accuracy: 57.460
+Epoch 90:                     
+	Train Loss: 1.704191, Train Accuracy: 75.624                     
+	Test Loss: 11.674603, Test Accuracy: 56.480
+Epoch 100:                     
+	Train Loss: 1.684685, Train Accuracy: 77.560                     
+	Test Loss: 11.678427, Test Accuracy: 56.680
+Epoch 110:                     
+	Train Loss: 1.662493, Train Accuracy: 79.792                     
+	Test Loss: 11.678710, Test Accuracy: 56.590
+Epoch 120:                     
+	Train Loss: 1.649607, Train Accuracy: 81.082                     
+	Test Loss: 11.673299, Test Accuracy: 57.220
+Epoch 130:                     
+	Train Loss: 1.637240, Train Accuracy: 82.318                     
+	Test Loss: 11.689182, Test Accuracy: 55.730
+Epoch 140:                     
+	Train Loss: 1.626859, Train Accuracy: 83.372                     
+	Test Loss: 11.682347, Test Accuracy: 56.020
+Epoch 150:                     
+	Train Loss: 1.618183, Train Accuracy: 84.240                     
+	Test Loss: 11.683031, Test Accuracy: 56.400
+Epoch 160:                     
+	Train Loss: 1.611468, Train Accuracy: 84.896                     
+	Test Loss: 11.684839, Test Accuracy: 56.010
+Epoch 170:                     
+	Train Loss: 1.605736, Train Accuracy: 85.484                     
+	Test Loss: 11.684983, Test Accuracy: 56.050
+Epoch 180:                     
+	Train Loss: 1.599003, Train Accuracy: 86.148                     
+	Test Loss: 11.681390, Test Accuracy: 56.380
+Epoch 190:                     
+	Train Loss: 1.595240, Train Accuracy: 86.522                     
+	Test Loss: 11.690299, Test Accuracy: 55.350
+Epoch 200:                     
+	Train Loss: 1.591700, Train Accuracy: 86.864                     
+	Test Loss: 11.689320, Test Accuracy: 55.260
+**** Model saved to ../models/ResNet18/avgcl5/r_noLS.npy ****
+**** TSNE plot saved to ../doc/figures/tsne_CIFAR10_cl5_r_noLSrandom.png ****
+
+**** Training ResNet18 on partial labelled CIFAR10 with Avg.#CL=5 and a smoothing rate of 0.1 ****
+Epoch 10:                     
+	Train Loss: 2.210925, Train Accuracy: 24.860                     
+	Test Loss: 11.536630, Test Accuracy: 65.690
+Epoch 20:                     
+	Train Loss: 2.101581, Train Accuracy: 37.438                     
+	Test Loss: 11.596548, Test Accuracy: 62.740
+Epoch 30:                     
+	Train Loss: 1.981691, Train Accuracy: 50.834                     
+	Test Loss: 11.609988, Test Accuracy: 62.170
+Epoch 40:                     
+	Train Loss: 1.873731, Train Accuracy: 62.864                     
+	Test Loss: 11.611274, Test Accuracy: 63.080
+Epoch 50:                     
+	Train Loss: 1.785053, Train Accuracy: 72.690                     
+	Test Loss: 11.619482, Test Accuracy: 62.920

@@ -32,13 +32,13 @@ WEIGHTING_PARAM = 0.9
 MOMENTUM = 0.9
 SMOOTHING_RATE = [0.1, 0.3, 0.5, 0.7, 0.9]
 EXPERIMENTS = [
-    {
-        'Dataset': 'FashionMNIST', 
-        'Model': LeNet5, 
-        'AvgCL': [3, 4, 5], 
-        'NumClasses': 10, 
-        'TopK': 6
-    },
+#    {
+#        'Dataset': 'FashionMNIST', 
+#        'Model': LeNet5, 
+#        'AvgCL': [3, 4, 5], 
+#        'NumClasses': 10, 
+#        'TopK': 6
+#    },
     {
         'Dataset': 'KuzushijiMNIST', 
         'Model': LeNet5, 
@@ -100,7 +100,7 @@ def main():
             if Path(traindata_path).exists(): partial_labels_train = np.load(traindata_path)
             else:
                 print(f"**** Generating partial labels for {exp['Dataset']} with avgCL {avgCL} ****")
-                predictions_train = get_topk_predictions(model, trainset, k=exp['TopK'])
+                predictions_train = get_random_predictions(model, trainset, k=exp['TopK'])
                 partial_labels_train, _ = generate_partial_labels(true_labels_train, predictions_train, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -110,7 +110,7 @@ def main():
             testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
-                predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
+                predictions_test = get_random_predictions(model, testset, k=exp['TopK'])
                 partial_labels_test, _ = generate_partial_labels(true_labels_test, predictions_test, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -133,7 +133,7 @@ def main():
             print(f"**** Model saved to {model_path}/r_noLS.npy ****")
 
             # generate and save plots
-            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
+            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLSrandom.png"
             figure_paths.append(figure_path)
             titles.append(f"({chr(97+plot_idx)}) w/o LS")
             plot_idx += 1
@@ -153,7 +153,7 @@ def main():
                 print(f"**** Model saved to {model_path}/r_{r}.npy ****")
 
                 # generate and save plots
-                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
+                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}random.png"
                 figure_paths.append(figure_path)
                 titles.append(f"({chr(97+len(titles))}) w/ LS, r={r}")
                 plot_idx += 1
@@ -167,7 +167,7 @@ def main():
 
         # plot grid
         plot_grid(figure_paths, titles, rows=len(exp['AvgCL']), cols=len(SMOOTHING_RATE)+1, 
-                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Dataset']}.png")
+                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Dataset']}random.png")
 
 if __name__ == "__main__":
     main()
