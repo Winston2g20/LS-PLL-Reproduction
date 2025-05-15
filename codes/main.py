@@ -69,7 +69,7 @@ def main():
             models[avgCL], records[avgCL] = [], []
 
             # train model for generating datasets if model file not exist, or load model if exists
-            dataset_model_path = f"{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}.pth"
+            dataset_model_path = f"{MODEL_PATH}/PL_{exp['Dataset']}_{exp['Model'].name}random.pth"
             if Path(dataset_model_path).exists():
                 model = exp['Model'](num_classes=exp['NumClasses']).to(device)
                 model.load_state_dict(torch.load(dataset_model_path))
@@ -96,7 +96,7 @@ def main():
             testdata_path = f"{DATASET_PATH}/pl_{exp['Dataset']}_avgcl{avgCL}_test.npy"
             if Path(testdata_path).exists(): partial_labels_test = np.load(testdata_path)
             else:
-                predictions_test = get_topk_predictions(model, testset, k=exp['TopK'])
+                predictions_test = get_random_predictions(model, testset, k=exp['TopK'])
                 partial_labels_test, _ = generate_partial_labels(true_labels_test, predictions_test, 
                                                                 avg_cl=avgCL, k=exp['TopK'], 
                                                                 num_classes=exp['NumClasses'])
@@ -116,10 +116,10 @@ def main():
             models[avgCL].append(non_smoothing_model)
             records[avgCL].append(non_smoothing_record)
             torch.save(non_smoothing_model.state_dict(), model_path+"/r_noLS.npy")
-            print(f"**** Model saved to {model_path}/r_noLS.npy ****")
+            print(f"**** Model saved to {model_path}/r_noLSrandom.npy ****")
 
             # generate and save plots
-            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLS.png"
+            figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_noLSrandom.png"
             figure_paths.append(figure_path)
             titles.append(f"({chr(97+plot_idx)}) w/o LS")
             plot_idx += 1
@@ -135,11 +135,11 @@ def main():
                                             num_classes=exp['NumClasses'], smoothing_rate=r)
                 models[avgCL].append(model)
                 records[avgCL].append(record)
-                torch.save(non_smoothing_model.state_dict(), model_path+f"/r_{r}.npy")
-                print(f"**** Model saved to {model_path}/r_{r}.npy ****")
+                torch.save(non_smoothing_model.state_dict(), model_path+f"/r_{r}random.npy")
+                print(f"**** Model saved to {model_path}/r_{r}random.npy ****")
 
                 # generate and save plots
-                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}.png"
+                figure_path = FIGURE_PATH + f"/tsne_{exp['Dataset']}_cl{avgCL}_r_{r}random.png"
                 figure_paths.append(figure_path)
                 titles.append(f"({chr(97+len(titles))}) w/ LS, r={r}")
                 plot_idx += 1
@@ -153,7 +153,7 @@ def main():
 
         # plot grid
         plot_grid(figure_paths, titles, rows=len(exp['AvgCL']), cols=len(SMOOTHING_RATE)+1, 
-                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Dataset']}.png")
+                    save_path=FIGURE_PATH+f"/tsne_grid_{exp['Dataset']}random.png")
 
 if __name__ == "__main__":
     main()
